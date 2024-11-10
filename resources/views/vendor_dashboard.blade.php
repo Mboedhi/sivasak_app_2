@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="styledash.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Vendor</title>
     <style>
     body {
         margin: 0;
@@ -659,90 +659,59 @@
 <body>
 
 <!-- Sidebar -->
-<header>
-    <div class="sidebar">
-        <ul>
-            <h2>SIVASAK</h2>
-            <li><img src="home.png" alt=""><a href="/admin_dashboard">Dashboard</a></li>
-            <li><img src="pb.png" alt=""><a href="/admin_offering">Buat Tawaran</a></li>
-            <li><img src="cb.png" alt=""><a href="/admin_vendorselection">Seleksi Vendor</a></li>
-            <li><img src="sh.png" alt=""><a href="/admin_negotiate">Negoisasi</a></li>
-            <li><img src="undo.png" alt=""><a href="/admin_tendercontrol">Kontrol Tender</a></li>
-            <li><img src="bat.png" alt=""><a href="/admin_maketender">Buat Akun Tender</a></li>
-            <li><img src="as.png" alt=""><a href="/admin_makedriver">Buat Akun Supir</a></li>
-            <li><img src="file.png" alt=""><a href="/admin_vehicles">Data Kendaraan</a></li>
-            <li><img src="alert.png" alt=""><a href="/admin_complainlist">Daftar Komplain</a></li>
-        </ul>
-    </div>
-</header>
+<div class="sidebar">
+    <ul>
+        <h2>SIVASAK</h2>
+        <li><img src="home.png" alt=""><a href="/vendor_dashboard">Dashboard</a></li>
+        <li><img src="negoisasi.png" alt=""><a href="negosiasivendor.php">Negosiasi</a></li>
+        <li><img src="offer.png" alt=""><a href="daftartawaran.php">Daftar Tawaran Perusahaan</a></li>
+    </ul>
+</div>
 
 <!-- Navbar -->
 <div class="navbar">
     <div class="menu">
         <ul>
-            <li><a href="#">Admin</a><img src="bp.png" alt=""></li>
+            <li><a href="#">Vendor</a><img src="vendor_icon.png" alt=""></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
 </div>
 
-<!-- Main Content -->
+<!-- Informasi Vendor -->
 <div class="main-content">
-    <!-- Dashboard Cards Section -->
-    <div class="dashboard-cards">
-        <div class="card card-1">
-            <h3>Data Supir</h3>
-            <p>30</p>
-            <button>More Info</button>
+    <div class="vendor-info">
+        <h2>Informasi Vendor</h2>
+        <div class="info-container">
+            <table>
+                <tr>
+                    <td>Nama Vendor</td>
+                    <td>: Vendor A</td>
+                </tr>
+                <tr>
+                    <td>No. Telepon</td>
+                    <td>: 081234567890</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>: vendor@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>Tipe Perusahaan</td>
+                    <td>: PT</td>
+                </tr>
+                <tr>
+                    <td>NPWP</td>
+                    <td>: 123.4567899</td>
+                </tr>
+                <tr>
+                    <td>Alamat Perusahaan</td>
+                    <td>: Jl. Belimbing Raya</td>
+                </tr>
+            </table>
         </div>
-        <div class="card card-2">
-            <h3>Data Vendor</h3>
-            <p>15</p>
-            <button>More Info</button>
-        </div>
-        <div class="card card-3">
-            <h3>Daftar Komplain</h3>
-            <p>5</p>
-            <button>More Info</button>
-        </div>
-    </div>
-
-    <!-- Traffic Chart Section -->
-    <div class="traffic-chart">
-        <canvas id="trafficChart"></canvas>
     </div>
 </div>
-
-<!-- Include script to render the chart using Chart.js -->
-<script>
-    var ctx = document.getElementById('trafficChart').getContext('2d');
-    var trafficChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Data Supir', 'Data Vendor', 'Daftar Komplain'],
-            datasets: [{
-                label: 'Traffic',
-                data: [30, 15, 5], // Replace with dynamic values if needed
-                backgroundColor: [
-                    '#007bff', // Blue
-                    '#dc3545', // Red
-                    '#28a745'  // Green
-                ],
-                borderColor: [
-                    '#004085', '#721c24', '#155724'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
 
 </body>
 </html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="styledash.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buat Tawaran</title>
     <style>
     body {
         margin: 0;
@@ -658,7 +658,6 @@
 </head>
 <body>
 
-<!-- Sidebar -->
 <header>
     <div class="sidebar">
         <ul>
@@ -676,7 +675,6 @@
     </div>
 </header>
 
-<!-- Navbar -->
 <div class="navbar">
     <div class="menu">
         <ul>
@@ -686,63 +684,30 @@
     </div>
 </div>
 
-<!-- Main Content -->
 <div class="main-content">
-    <!-- Dashboard Cards Section -->
-    <div class="dashboard-cards">
-        <div class="card card-1">
-            <h3>Data Supir</h3>
-            <p>30</p>
-            <button>More Info</button>
-        </div>
-        <div class="card card-2">
-            <h3>Data Vendor</h3>
-            <p>15</p>
-            <button>More Info</button>
-        </div>
-        <div class="card card-3">
-            <h3>Daftar Komplain</h3>
-            <p>5</p>
-            <button>More Info</button>
-        </div>
-    </div>
+    <h2>Buat Tawaran</h2>
+    <form action="submit_tawaran.php" method="post" enctype="multipart/form-data">
+        <label for="judul-tawaran">Judul Tawaran</label>
+        <input type="text" id="judul-tawaran" name="judul-tawaran" required>
 
-    <!-- Traffic Chart Section -->
-    <div class="traffic-chart">
-        <canvas id="trafficChart"></canvas>
-    </div>
+        <label for="kendaraan">Jenis Barang</label>
+        <input type="text" id="judul-tawaran" name="judul-tawaran" required>
+
+        <label for="deskripsi">Deskripsi</label>
+        <textarea id="deskripsi" name="deskripsi" rows="4" required></textarea>
+
+        <label for="harga-total">Harga Total (Rp)</label>
+        <input type="number" id="harga-total" name="harga-total" required>
+
+        <label for="masa-berlaku">Masa Berlaku</label>
+        <input type="date" id="masa-berlaku" name="masa-berlaku" required>
+
+        <label for="lampiran">Lampiran</label>
+        <input type="file" id="lampiran" name="lampiran">
+
+        <button type="submit">Ajukan Tawaran</button>
+    </form>
 </div>
-
-<!-- Include script to render the chart using Chart.js -->
-<script>
-    var ctx = document.getElementById('trafficChart').getContext('2d');
-    var trafficChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Data Supir', 'Data Vendor', 'Daftar Komplain'],
-            datasets: [{
-                label: 'Traffic',
-                data: [30, 15, 5], // Replace with dynamic values if needed
-                backgroundColor: [
-                    '#007bff', // Blue
-                    '#dc3545', // Red
-                    '#28a745'  // Green
-                ],
-                borderColor: [
-                    '#004085', '#721c24', '#155724'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
 
 </body>
 </html>
