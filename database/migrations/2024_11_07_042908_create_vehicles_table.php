@@ -16,9 +16,13 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->string('vehicle_plate');
             $table->string('vehicle_type');
+            $table->string('year');
             $table->string('vehicle_registration');
             $table->date('vehicle_tax');
-            $table->enum('operate_status', ['active', 'non_active']);
+            $table->date('registration_expired');
+            $table->date('head_cover_date');
+            $table->date('tail_cover_date');
+            $table->text('note');
             $table->timestamps();
         });
     }

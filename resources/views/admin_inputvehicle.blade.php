@@ -682,153 +682,62 @@ form button:hover {
         </div>
     </div>
 
-    <!-- Daftar Kendaraan -->
+    <!-- Daftar kendaraan -->
 <div class="akun">
-    <h2>Daftar Kendaraan</h2>
-    
-    <div class="search-container">
-        <input type="text" placeholder="Cari Nopol Kendaraan">
-        <button class="search-button">Cari</button>
-    </div>
+    <h2>{{ isset($vehicle) ? 'Edit' : 'Tambah' }} Data Kendaraan</h2>
+    <div class="form-container">
+        <form action="{{ isset($vehicle) ? route('admin_editinputvehicle', ['vehicle_id' => $vehicle->vehicle_id]) : route('admin_storevehicle') }}" method="POST">
+            @csrf
+            @if (isset($vehicle))
+                @method('PUT')
+            @endif
 
-    <div class="table-container">
-        <table>
-            <thead>
+            <table>
                 <tr>
                     <th>Nomor Polisi</th>
+                    <td><input type="text" name="vehicle_plate" value="{{ $vehicle->vehicle_plate ?? '' }}" required></td>
+                </tr>
+                <tr>
                     <th>Tahun Pembuatan</th>
+                    <td><input type="text" name="year" value="{{ $vehicle->year ?? '' }}" required></td>
+                </tr>
+                <tr>
                     <th>Jenis Kendaraan</th>
-                    <th>No.STNK</th>
+                    <td><input type="text" name="vehicle_type" value="{{ $vehicle->vehicle_type ?? '' }}" required></td>
+                </tr>
+                <tr>
+                    <th>No. STNK</th>
+                    <td><input type="text" name="vehicle_registration" value="{{ $vehicle->vehicle_registration ?? '' }}" required></td>
+                </tr>
+                <tr>
                     <th>Masa Berlaku STNK</th>
+                    <td><input type="date" name="registration_expired" value="{{ $vehicle->registration_expired ?? '' }}" required></td>
+                </tr>
+                <tr>
                     <th>Masa Berlaku Pajak</th>
+                    <td><input type="date" name="vehicle_tax" value="{{ $vehicle->vehicle_tax ?? '' }}" required></td>
+                </tr>
+                <tr>
                     <th>Masa Berlaku Keur Kepala</th>
+                    <td><input type="date" name="head_cover_date" value="{{ $vehicle->head_cover_date ?? '' }}" required></td>
+                </tr>
+                <tr>
                     <th>Masa Berlaku Keur Ekor</th>
+                    <td><input type="date" name="tail_cover_date" value="{{ $vehicle->tail_cover_date ?? '' }}" required></td>
+                </tr>
+                <tr>
                     <th>Keterangan</th>
-                    <th>Aksi</th>
+                    <td><textarea name="note" required>{{ $vehicle->note ?? '' }}</textarea></td>
                 </tr>
-            </thead>
-            <tbody>
-                @forelse($vehicles as $vehicle)
-                <tr>
-                    <td>{{ $vehicle->vehicle_plate }}</td>
-                    <td>{{ $vehicle->year }}</td>
-                    <td>{{ $vehicle->vehicle_type }}</td>
-                    <td>{{ $vehicle->vehicle_registration }}</td>
-                    <td>{{ $vehicle->vehicle_tax}}</td>
-                    <td>{{ $vehicle->registration_expired}}</td>
-                    <td>{{ $vehicle->head_cover_date}}</td>
-                    <td>{{ $vehicle->tail_cover_date}}</td>
-                    <td>{{ $vehicle->note}}</td>
-                    <td>
-                        <a href="{{ route('admin_editinputvehicle', ['vehicle_id' => $vehicle->vehicle_id]) }}" class="edit-button">Edit</a>
-                        <!-- <button class="edit-button" onclick="{{ route('admin_editinputvehicle', $vehicle->vehicle_id) }}">Edit</button> -->
-                        <form action="{{ route('admin_editdeletevehicle', $vehicle->vehicle_id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="delete-button" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
-                        </form>
-                        <button class="cek-button" onclick="openModal({{ $vehicle->vehicle_id }})">Cek</button>
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="10" class="text_center">Tidak ada data kendaraan.</td>
-                </tr>
-                @endforelse
-        </tbody>
-        </table>
-    </div>
+            </table>
 
-    <!-- Tombol Tambah Data Kendaraan -->
-    <div class="button-container">
-        <button class="tambah-button" onclick="window.location.href='/admin_inputvehicle'">Tambah Data</button>
+            <div class="form-buttons">
+                <button type="submit" class="submit-button">Simpan</button>
+                <button type="button" class="cancel-button" onclick="window.history.back()">Batal</button>
+            </div>
+        </form>
     </div>
 </div>
-
-<!-- Modal Pop-up untuk Cek Akun tender -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <h3>Detail Data Kendaraan</h3>
-        <div id="vehicle_details"></div>  <!-- Tempat untuk menampilkan detail kendaraan -->
-        <div class="modal-buttons">
-            <button class="close-button" onclick="closeModal()">Tutup</button>
-        </div>
-    </div>
-</div>
-
-
-<!-- <div class="modal" id="modal">
-    <div class="modal-content">
-        <h3>Detail Data Kendaraan</h3>
-        <p>Nomor Polisi: BE 9090 XX</p>
-        <p>Tahun Pembuatan: 2019</p>
-        <p>Jenis Kendaraan: Dumptruck</p>
-        <p>No. STNK: STNK-001</p>
-        <p>Masa Berlaku STNK: 2025/05/10</p>
-        <p>Masa Berlaku Pajak: 2025/05/10</p>
-        <p>Masa Berlaku Keur Kepala: 2025/05/10</p>
-        <p>Masa Berlaku Keur Ekor: 2025/05/10</p>
-        <p>Keterangan: Kendaraan Operasional</p>
-        <div class="modal-buttons">
-            <button class="close-button" onclick="closeModal()">Tutup</button>
-        </div>
-    </div>
-</div> -->
-
-<!-- Modal Pop-up untuk Hapus Akun Supir -->
-<div class="delete-modal" id="delete-modal">
-    <div class="delete-modal-content">
-        <p>Hapus data supir?</p>
-        <div class="delete-modal-buttons">
-            <button class="confirm-button" onclick="deleteSupir()">Hapus</button>
-            <button class="cancel-button" onclick="closeDeleteModal()">Batal</button>
-        </div>
-    </div>
-</div>
-
-<script>
-    function openModal(vehicle_id) {
-        // Mengambil data kendaraan melalui AJAX menggunakan Fetch API
-        fetch(`/vehicle/${vehicle_id}/details`)
-            .then(response => response.json())  // Mengonversi response menjadi JSON
-            .then(data => {
-                // Menampilkan data kendaraan dalam modal
-                var vehicleDetails = `
-                    <p>Nomor Polisi: ${data.vehicle_plate}</p>
-                    <p>Tahun Pembuatan: ${data.year}</p>
-                    <p>Jenis Kendaraan: ${data.vehicle_type}</p>
-                    <p>No. STNK: ${data.vehicle_registration}</p>
-                    <p>Masa Berlaku STNK: ${data.registration_expired}</p>
-                    <p>Masa Berlaku Pajak: ${data.vehicle_tax}</p>
-                    <p>Masa Berlaku Keur Kepala: ${data.head_cover_date}</p>
-                    <p>Masa Berlaku Keur Ekor: ${data.tail_cover_date}</p>
-                    <p>Keterangan: ${data.note}</p>
-                `;
-                document.getElementById('vehicle_details').innerHTML = vehicleDetails;
-
-                // Menampilkan modal
-                document.getElementById('modal').style.display = 'flex';
-            })
-            .catch(error => console.error('Error fetching vehicle data:', error));  // Error handling
-    }
-
-    function closeModal() {
-        document.getElementById('modal').style.display = 'none';
-    }
-
-    function openDeleteModal() {
-        document.getElementById('delete-modal').style.display = 'flex';
-    }
-
-    function closeDeleteModal() {
-        document.getElementById('delete-modal').style.display = 'none';
-    }
-
-    function deleteSupir() {
-        alert("Data tender dihapus");
-        closeDeleteModal();
-    }
-</script>
 
 </body>
 </html>

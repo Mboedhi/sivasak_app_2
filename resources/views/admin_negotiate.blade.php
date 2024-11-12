@@ -659,15 +659,16 @@ form button:hover {
 <div class="sidebar">
         <ul>
             <h2>SIVASAK</h2>
+            <h2>SIVASAK</h2>
             <li><img src="home.png" alt=""><a href="/admin_dashboard">Dashboard</a></li>
             <li><img src="pb.png" alt=""><a href="/admin_offering">Buat Tawaran</a></li>
             <li><img src="cb.png" alt=""><a href="/admin_vendorselection">Seleksi Vendor</a></li>
             <li><img src="sh.png" alt=""><a href="/admin_negotiate">Negoisasi</a></li>
             <li><img src="undo.png" alt=""><a href="/admin_tendercontrol">Kontrol Tender</a></li>
-            <li><img src="bat.png" alt=""><a href="pembuatantender.php">Buat Akun Tender</a></li>
-            <li><img src="as.png" alt=""><a href="buatakunsupir.php">Buat Akun Supir</a></li>
-            <li><img src="file.png" alt=""><a href="datakendaraan.php">Data Kendaraan</a></li>
-            <li><img src="alert.png" alt=""><a href="daftarkomplain.php">Daftar Komplain</a></li>
+            <li><img src="bat.png" alt=""><a href="/admin_maketender">Buat Akun Tender</a></li>
+            <li><img src="as.png" alt=""><a href="/admin_makedriver">Buat Akun Supir</a></li>
+            <li><img src="file.png" alt=""><a href="/admin_vehicles">Data Kendaraan</a></li>
+            <li><img src="alert.png" alt=""><a href="/admin_complainlist">Daftar Komplain</a></li>
         </ul>
     </div>
 </header>

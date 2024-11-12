@@ -681,7 +681,12 @@
     <div class="menu">
         <ul>
             <li><a href="#">Admin</a><img src="bp.png" alt=""></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </li>
         </ul>
     </div>
 </div>

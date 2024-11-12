@@ -65,17 +65,27 @@
 
 <body>
     <h2>Login</h2>
-    <form method="POST" action="">
-        <input type="email" name="email" required placeholder="Email"><br>
-        <input type="password" name="password" required placeholder="Password"><br>
+    <form action="{{ route('login.submit') }}" method="POST">
+        @csrf
+        <!-- Field untuk email -->
+        <input type="email" name="email" placeholder="Email" required>
+    
+        <!-- Field untuk password -->
+        <input type="password" name="password" placeholder="Password" required>
+
+        <!-- Tombol submit -->
         <input type="submit" value="Login">
-        <p style="text-align: center;">Don't have an account? <a href="register.php">Register</a></p>
+        <p style="text-align: center;">Don't have an account? <a href="/register">Register</a></p>
     </form>
 
-    <?php
-    if (isset($error)) {
-        echo "<p style='color:red;'>$error</p>";
-    }
-    ?>
+    @if ($errors->any())
+        <div style="color: red;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 </body>
 </html>
