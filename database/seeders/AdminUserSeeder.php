@@ -9,7 +9,7 @@ class AdminUserSeeder extends Seeder
 {
     public function run()
     {
-        User::create([
+        User::create(attributes: [
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin0000'),

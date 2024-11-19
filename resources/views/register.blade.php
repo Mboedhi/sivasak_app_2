@@ -3,93 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrasi</title>
-    <style>
-body {
-    background-color: #0A397F;
-}
-
-h2 {
-    text-align: center;
-    color: white;
-}
-
-form {
-    width: 500px;
-    margin: 0 auto;
-    margin-top: 10px;
-    padding: 20px;
-    background-color: #CACDED;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px 0px #000000;
-}
-
-form input[type="username"],
-form input[type="email"],
-form input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #1a237e;
-    border-radius: 20px;
-    font-family: inherit;
-}
-
-form input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #1565c0;
-    color: #ffffff;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-form input[type="submit"]:hover {
-    background-color: #0d47a1;
-}
-
-form .error {
-    color: #ff0000;
-    margin-bottom: 10px;
-}
-
-form .success {
-    color: #4caf50;
-    margin-bottom: 10px;
-}
-
-
-
-    </style>
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
 </head>
-<body>
-    <h2>Create Account</h2>
-    <form method="POST" action="">
-        <input type="username" name="username" required placeholder="Username"><br>
-        <input type="email" name="email" required placeholder="Email"><br>
-        <input type="password" name="password" required placeholder="Password"><br>
-        <input type="password" name="confirm_password" required placeholder="Confirm Password"><br>
-        <input type="submit" value="Create Account">
-        <p style="text-align: center;">Already have an account? <a href="index.php">Login</a></p>
-    </form>
 
-    @if ($errors->any())
-        <div style="color:red;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+<body>
+    <!-- <div id="popup" class="popup success">
+        ✅ Akun anda sudah terdaftar, silahkan login.
+    </div> -->
+    <div class="container">
+        <img src="pgp.png" alt="Logo" class="logo">
+        <h2>Create Account</h2>
+        <div class="form">
+            <form method="POST" action="{{ route('register_submit') }}">
+                @csrf
+                <input type="text" name="name" placeholder="Username" required><br>
+                <input type="email" name="email" placeholder="Email" required><br>
+                <input type="password" name="password" placeholder="Password" required><br>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+                <div style="text-align: center"><input type="submit" value="Create Account"></div><br>
+            </form>
+            <p>Already have an account? <a href="{{ route('login') }}">Login</a></p>
+
         </div>
-    @endif
-    
-    <?php
-    if (isset($error)) {
-        echo "<p style='color:red;'>$error</p>";
-    }
-    ?>
+
+        @if (session('success'))
+            <div class="popup success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+
+        <script>
+            // Cek apakah ada notifikasi sukses di session
+            <?php if (isset($_SESSION['register_success']) && $_SESSION['register_success']): ?>
+                // Tampilkan popup
+                document.getElementById('popup').style.display = 'block';
+
+                // Sembunyikan popup setelah 3 detik
+                setTimeout(function() {
+                    document.getElementById('popup').style.display = 'none';
+                }, 3000);
+
+                <?php unset($_SESSION['register_success']); // Hapus session setelah ditampilkan ?>
+            <?php endif; ?>
+        </script>
+    </div>
 </body>
 </html>

@@ -18,7 +18,6 @@ class AdminInputVehicleController extends Controller
             'head_cover_date' => 'required|date',
             'tail_cover_date' => 'required|date',
             'note' => 'required|string',
-            
         ]);
 
         $exists = Vehicle::where('vehicle_plate', $validateData['vehicle_plate'])
@@ -29,7 +28,7 @@ class AdminInputVehicleController extends Controller
             return redirect('/admin_vehicles')->with('error', 'data sudah ada');
         }
 
-        Vehicle::create($validateData);
+        Vehicle::create(attributes: $validateData);
         return redirect('/admin_vehicles')->with('success', 'data berhasil ditambahkan');
     }
 
@@ -47,7 +46,14 @@ class AdminInputVehicleController extends Controller
         ]);
 
         $vehicle = Vehicle::findOrFail($vehicle_id);
-        $vehicle->update($request->all());
+        $vehicle->update($request->only([
+            'year', 
+            'vehicle_type', 
+            'vehicle_tax', 
+            'head_cover_date', 
+            'tail_cover_date', 
+            'note'
+        ]));
 
         return redirect('/admin_vehicles')->with('success', 'data berhasil diedit');
     }
@@ -56,7 +62,8 @@ class AdminInputVehicleController extends Controller
         $vehicle = Vehicle::findOrFail($vehicle_id);
         $vehicle->delete();
 
-        return redirect('/admin_vehicles')->with('success', 'data berhasil dihapus');
+        // return redirect('/admin_vehicles')->with('success', 'data berhasil dihapus');
+        return response()->json(['success' => true]);
     }
 
     public function showEditForm($vehicle_id){

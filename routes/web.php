@@ -8,6 +8,7 @@ use App\Http\Controllers\LogoutController;
 
 use App\Http\Controllers\AdminDashController;
 use App\Http\Controllers\AdminOfferingController;
+use App\Http\Controllers\AdminShowOfferingController;
 use App\Http\Controllers\AdminVendorSelectionController;
 use App\Http\Controllers\AdminNegotiateController;
 use App\Http\Controllers\AdminTenderController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\AdminMakeDriverController;
 use App\Http\Controllers\AdminVehiclesController;
 use App\Http\Controllers\AdminComplainListController;
 use App\Http\Controllers\AdminInputVehicleController;
+use App\Http\Controllers\RegisterController;
 
 use App\Http\Controllers\VendorDashController;
 
@@ -24,18 +26,32 @@ Route::get('/', function () {
 });
 
 //buat login
-Route::get('/login', [LoginController::class, 'showlogin'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+Route::get(uri: '/login', action: [LoginController::class, 'showlogin'])->name('login');
+Route::post('/login', action: [LoginController::class, 'login'])->name('login.submit');
 Route::middleware(['auth', 'admin'])->get('/admin_dashboard', [AdminDashController::class, 'showadmindash'])->name('admin_dashboard');
-Route::post('/logout', function () {
+Route::post('/logout', action: function () {
     Auth::logout();
     return redirect('/login'); // Redirect ke halaman login setelah logout
 })->name('logout');
 
+//register
+Route::get('/register', action: [RegisterController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', action: [RegisterController::class, 'register'])->name('register_submit');
 
+//dashboard
 Route::get('/admin_dashboard', [AdminDashController::class, 'showadmindash'])->name('admin_dashboard');
 
+
+//tawaran
+Route::get('/admin_showoffering', [AdminOfferingController::class, 'showoffering'])->name('admin_showoffering');
+
 Route::get('/admin_offering', [AdminOfferingController::class, 'showadminoff'])->name('admin_offering');
+Route::post('/admin_offering', [AdminOfferingController::class, 'StoreData'])->name('admin_storeoffering');
+Route::get('/item/{item_id}/details', [AdminShowOfferingController::class, 'getDetails'])->name('item_details');
+Route::get('/admin_editoffering/{item_id}', [AdminOfferingController::class, 'EditOffering'])->name('admin_editoffering');
+Route::put('/admin_offering/{item_id}', [AdminOfferingController::class, 'EditData'])->name('admin_updateoffering');
+Route::delete('/admin_offering/{item_id}', [AdminOfferingController::class, 'DeleteData'])->name('admin_deleteitem');
+
 
 Route::get('/admin_vendorselection', [AdminVendorSelectionController::class, 'showvendorselection'])->name('admin_vendorselection');
 
