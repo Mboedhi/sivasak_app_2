@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id('item_id');
             $table->string('item_name');
-            $table->integer('amount');
+            $table->string('item_type');
+            $table->string('item_desc');
+            $table->string('item_price');
+            $table->date('expired_date');
+            $table->string('attachment');
             $table->timestamps();
         });
     }
