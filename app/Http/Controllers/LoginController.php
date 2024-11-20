@@ -20,8 +20,9 @@ class LoginController extends Controller
             if (Auth::user()->role === 'admin') {
                 return redirect()->route('admin_dashboard'); // Ganti dengan route dashboard admin Anda
             } else {
-                Auth::logout();
-                return redirect()->route('login')->withErrors(['msg' => 'Hanya admin yang bisa mengakses halaman ini.']);
+                // Auth::logout();
+                return redirect()->route('vendor_dahsboard');
+                //->withErrors(['msg' => 'Hanya admin yang bisa mengakses halaman ini.'])
             }
         }
 

@@ -15,55 +15,32 @@ class RegisterController extends Controller
         return view('register');
     }
 
-//     public function register(Request $request)
-// {
-//  // Validate input
-//         $validatedData = $request->validate([
-//             'name' => 'required|string|max:255',
-//             'email' => 'required|string|email|max:255|unique:users',
-//             'password' => 'required|string|min:8|confirmed',
-//         ]);
-
-//         // Membuat user baru dengan peran 'tender_cand'
-//         // User::create([
-//         //     'username' => $request->username,
-//         //     'email' => $request->email,
-//         //     'password' => Hash::make($request->password),
-//         //     'role' => 'tender_cand',
-//         // ]);
-//         // User::create(attritbutes: $validateData)
-//             // Create a new user with the 'tender_cand' role
-//         User::create([
-//             'name' => $validatedData['name'],
-//             'email' => $validatedData['email'],
-//             'password' => Hash::make(value: $validatedData['password']), // Hash the password
-//             'role' => 'tender_cand', // Assuming this column exists in the users table
-//         ]);
-
-
-//         // Redirect ke halaman login atau dashboard setelah registrasi
-//         return redirect()->route('login')->with('success', 'Account created successfully. Please login.');
-//     }
     public function register(Request $request)
-    {
-        // Validasi input dari pengguna
+{
+    try {
+        // Validate input
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Buat user baru dengan role 'tender_cand'
-        User::create([
+        // Create a new user with the validated data
+        $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']), // Meng-hash password
-            'role' => 'tender_cand', // Mengatur role menjadi 'tender_cand'
+            'password' => Hash::make($validatedData['password']),
+            'role' => 'tender_cand',
         ]);
 
-        // Redirect ke halaman login dengan pesan sukses
-        return redirect()->route('login')->with('success', 'Akun berhasil dibuat. Silakan login.');
+        // Redirect to login with success message
+        return redirect()->route('login')->with('success', 'Account created successfully. Please login.');
+    } catch (\Exception $e) {
+        // Log the error message
+        \Log::error('Registration error: ' . $e->getMessage());
+
+        // Redirect back with error message
+        return redirect()->back()->withErrors(['error' => 'Registration failed. Please try again.']);
     }
-
+    }
 }
-

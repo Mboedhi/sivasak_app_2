@@ -19,6 +19,8 @@ use App\Http\Controllers\AdminComplainListController;
 use App\Http\Controllers\AdminInputVehicleController;
 use App\Http\Controllers\RegisterController;
 
+
+use App\Http\Controllers\VendorOfferListController;
 use App\Http\Controllers\VendorDashController;
 
 Route::get('/', function () {
@@ -62,6 +64,7 @@ Route::get('/admin_tendercontrol', [AdminTenderController::class, 'showtendercon
 Route::get('/admin_maketender', [AdminMakeTenderController::class, 'showtender'])->name('admin_maketender');
 
 Route::get('/admin_makedriver', [AdminMakeDriverController::class, 'showdriver'])->name('admin_makedriver');
+Route::get('/user/{user_id}/details', [AdminMakeDriverController::class, 'getDriver'])->name('driver_details');
 
 Route::get('/admin_vehicles', [AdminVehiclesController::class, 'showvehiclescontroller'])->name('admin_vehicles');
 Route::get('/vehicle/{vehicle_id}/details', [AdminVehiclesController::class, 'getDetails'])->name('vehicle_details');
@@ -78,4 +81,6 @@ Route::delete('/admin_inputvehicle/{vehicle_id}', [AdminInputVehicleController::
 
 
 Route::get('vendor_dashboard', [VendorDashController::class, 'showvendordash'])->name('vendor_dahsboard');
+
+Route::get('vendor_offer_list', [VendorOfferListController::class, 'showofferlist'])->name('vendor_offer_list');
 

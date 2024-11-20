@@ -20,16 +20,26 @@
                 <input type="text" name="name" placeholder="Username" required><br>
                 <input type="email" name="email" placeholder="Email" required><br>
                 <input type="password" name="password" placeholder="Password" required><br>
-                <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+                <input type="password" name="password_confirmation" placeholder="Confirm Password" required><br>
                 <div style="text-align: center"><input type="submit" value="Create Account"></div><br>
+                <p>Already have an account? <a href="{{ route('login') }}">Login</a></p>
             </form>
-            <p>Already have an account? <a href="{{ route('login') }}">Login</a></p>
-
         </div>
 
         @if (session('success'))
             <div class="popup success">
                 {{ session('success') }}
+            </div>
+        @endif
+
+        <!-- register.blade.php -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
         @endif
 
