@@ -48,7 +48,7 @@
     
     <!-- Tombol Tambah Akun -->
     <div class="button-container">
-        <button class="tambah-button" onclick="window.location.href='buatakunsupir.php'">Tambah Akun</button>
+        <button class="tambah-button" onclick="window.location.href='/admin_makedriveracc'">Tambah Akun</button>
     </div>
 
     <div class="table-container">
@@ -70,9 +70,9 @@
                         <td>{{$driver->email}}</td>
                         <td>{{$driver->vehicle_type}}</td>
                         <td>
-                            <button class="edit-button" onclick="window.location.href='/edit-driver/{{ $driver->id }}'">Edit</button>
+                            <button class="edit-button" onclick="window.location.href='{{ route('admin_editinputdriveracc', ['user_id' => $driver->user_id]) }}'">Edit</button>
                             <button class="cek-button" onclick="openModal('{{ $driver->user_id }}')">Cek</button>
-                            <button class="delete-button" onclick="openDeleteModal('{{ $driver->id }}')">Hapus</button>
+                            <button class="delete-button" onclick="openDeleteModal({{ $driver->user_id }})">Hapus</button>
                         </td>
                     </tr>
                 @empty
@@ -101,46 +101,80 @@
     <div class="delete-modal-content">
         <p>Hapus data supir?</p>
         <div class="delete-modal-buttons">
-            <button class="confirm-button" onclick="deleteSupir()">Hapus</button>
+            <button class="confirm-button" onclick="confirmDeleteSupir()">Hapus</button>
             <button class="cancel-button" onclick="closeDeleteModal()">Batal</button>
         </div>
     </div>
 </div>
 
 <script>
-    function openModal() {
-        fetch(`/user/${user_id}/details`)
-            .then(response => response.json())  
-            .then(data => {
-                var userDetails = `
-                    <p>Nama Supir:${data.name} </p>
-                    <p>No Telpon:${data.phone_number} </p>
-                    <p>Email:${data.email} </p>
-                    <p>Jenis Kendaraan:${data.vehicle_type} </p>
-                `;
-                document.getElementById('user_details').innerHTML = userDetails;
+    let currentDriverId;
 
-                document.getElementById('modal').style.display = 'flex';
+        function openModal(user_id) {
+            fetch(`/user/${user_id}/details`)
+                .then(response => response.json())  
+                .then(data => {
+                    var driverDetails = `
+                        <p>Nama Supir:${data.name} </p>
+                        <p>No Telpon:${data.phone_number} </p>
+                        <p>Email:${data.email} </p>
+                        <p>Jenis Kendaraan:${data.vehicle_type} </p>
+                    `;
+                    document.getElementById('driver_details').innerHTML = driverDetails;
+
+                    document.getElementById('modal').style.display = 'flex';
+                })
+                .catch(error => console.error('Error fetching user data:', error));
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function openDeleteModal(driverId) {
+            currentDriverId = driverId
+            document.getElementById('delete-modal').style.display = 'flex';
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('delete-modal').style.display = 'none';
+        }
+
+        function confirmDeleteSupir() {
+            fetch(`/user/${currentDriverId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',  // Diperlukan untuk Laravel CSRF protection
+                    'Content-Type': 'application/json'
+                }
             })
-            .catch(error => console.error('Error fetching user data:', error));
-    }
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => {
+                        console.error('Error response:', text); // Debug error HTML jika ada
+                        throw new Error(`HTTP Error: ${response.status}`);
+                    });
+                }
+                return response.json(); // Parsing JSON jika respons valid
+            })
+            .then(data => {
+                if (data.success) {
+                    alert("Data supir berhasil dihapus");
+                    location.reload(); // Reload halaman
+                } else {
+                    alert("Gagal menghapus data supir: " + (data.message || 'Tidak diketahui'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan dalam menghapus data: ' + error.message);
+            })
+            .finally(() => {
+                closeDeleteModal();
+            });
+        }
 
-    function closeModal() {
-        document.getElementById('modal').style.display = 'none';
-    }
 
-    function openDeleteModal() {
-        document.getElementById('delete-modal').style.display = 'flex';
-    }
-
-    function closeDeleteModal() {
-        document.getElementById('delete-modal').style.display = 'none';
-    }
-
-    function deleteSupir() {
-        alert("Data supir dihapus");
-        closeDeleteModal();
-    }
 </script>
 
 </body>

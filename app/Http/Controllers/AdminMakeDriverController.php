@@ -17,4 +17,10 @@ class AdminMakeDriverController extends Controller
 
         return view('admin_makedriver', compact('drivers'));
     }
+    public function deleteDriver($user_id){
+        $driver = User::findOrFail($user_id);
+        $driver->delete();
+
+        return response()->json(['success' => true]);
+    }
 }

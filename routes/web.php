@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminVehiclesController;
 use App\Http\Controllers\AdminComplainListController;
 use App\Http\Controllers\AdminInputVehicleController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AdminMakeDriverAccController;
 
 
 use App\Http\Controllers\VendorOfferListController;
@@ -63,9 +64,16 @@ Route::get('/admin_tendercontrol', [AdminTenderController::class, 'showtendercon
 
 Route::get('/admin_maketender', [AdminMakeTenderController::class, 'showtender'])->name('admin_maketender');
 
+//akun driver
 Route::get('/admin_makedriver', [AdminMakeDriverController::class, 'showdriver'])->name('admin_makedriver');
+Route::get('/admin_makedriveracc', [AdminMakeDriverAccController::class, 'showdriveracc'])->name('admin_makedriveracc');
+Route::post('/admin_makedriveracc', [AdminMakeDriverAccController::class, 'register'])->name('driver_register');
 Route::get('/user/{user_id}/details', [AdminMakeDriverController::class, 'getDriver'])->name('driver_details');
+Route::delete('/user/{user_id}', [AdminMakeDriverController::class, 'deleteDriver'])->name('delete_driver');
+Route::get('/admin_makedriveracc/edit/{user_id}', [AdminMakeDriverAccController::class, 'showeditDriver'])->name('admin_showeditinputdriveracc');
+Route::put('/admin_makedriveracc/edit/{user_id}', [AdminMakeDriverAccController::class, 'editDriver'])->name('admin_editinputdriveracc');
 
+//kendaraan
 Route::get('/admin_vehicles', [AdminVehiclesController::class, 'showvehiclescontroller'])->name('admin_vehicles');
 Route::get('/vehicle/{vehicle_id}/details', [AdminVehiclesController::class, 'getDetails'])->name('vehicle_details');
 

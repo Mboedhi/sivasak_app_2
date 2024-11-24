@@ -108,13 +108,13 @@
                         <td>
                             @if($item->attachment)
                                 <a href="{{ asset('storage/attachments/' . basename($item->attachment)) }}" download>
-                                <button class="download-btn">Download</button>
+                                <button class="apply-btn">Download</button>
                                 </a>
                             @else
                                 Tidak ada lampiran
                             @endif
                         </td>
-                        <td><a href="detailtawaran.php"><button class="apply-btn">Cek</button></a></td>
+                        <td><button class="apply-btn" onclick="openIsiModal()">Cek</button></td>
                     </tr>
                     @empty
                     <tr>
@@ -125,6 +125,34 @@
             </table>
         </div>
     </div>
+    <div class="modal" id="isi-modal">
+        <div class="modal-content">
+            <h3>Isi Form</h3>
+            <form action="submit_isi.php" method="POST">
+                <label for="quantity">Jumlah Barang:</label>
+                <input type="number" id="quantity" name="quantity" required>
+
+                <label for="notes">Catatan:</label>
+                <textarea id="notes" name="notes" rows="4"></textarea>
+
+                <div class="modal-buttons">
+                    <button type="submit" class="submit-button">Kirim</button>
+                    <button type="button" class="close-button" onclick="closeIsiModal()">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openIsiModal() {
+        document.getElementById('isi-modal').style.display = 'flex';
+    }
+
+    function closeIsiModal() {
+        document.getElementById('isi-modal').style.display = 'none';
+    }
+</script>
 </div>
 </body>
 </html>

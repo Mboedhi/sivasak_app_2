@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -15,8 +16,7 @@ class RegisterController extends Controller
         return view('register');
     }
 
-    public function register(Request $request)
-{
+    public function register(Request $request){
     try {
         // Validate input
         $validatedData = $request->validate([
@@ -33,14 +33,11 @@ class RegisterController extends Controller
             'role' => 'tender_cand',
         ]);
 
-        // Redirect to login with success message
         return redirect()->route('login')->with('success', 'Account created successfully. Please login.');
-    } catch (\Exception $e) {
-        // Log the error message
-        \Log::error('Registration error: ' . $e->getMessage());
+        } catch (\Exception $e) {
+            \Log::error('Registration error: ' . $e->getMessage());
 
-        // Redirect back with error message
-        return redirect()->back()->withErrors(['error' => 'Registration failed. Please try again.']);
-    }
+            return redirect()->back()->withErrors(['error' => 'Registration failed. Please try again.']);
+        }
     }
 }
