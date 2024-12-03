@@ -17,9 +17,9 @@
             <li><img src="cb.png" alt=""><a href="/admin_vendorselection">Seleksi Vendor</a></li>
             <li><img src="sh.png" alt=""><a href="/admin_negotiate">Negosiasi</a></li>
             <li><img src="undo.png" alt=""><a href="/admin_tendercontrol">Kontrol Tender</a></li>
-            <li><img src="file.png" alt=""><a href="daftarquestioner.php">Questioner</a></li>
+            <li><img src="file.png" alt=""><a href="/admin_questionaire">Questioner</a></li>
             <li><img src="bat.png" alt=""><a href="/admin_maketender">Buat Akun Vendor</a></li>
-            <li><img src="bat.png" alt=""><a href="datacalonvendor.php">Data Calon Vendor</a></li>
+            <li><img src="bat.png" alt=""><a href="/admin_vendor_list">Data Calon Vendor</a></li>
             <li><img src="as.png" alt=""><a href="/admin_makedriver">Buat Akun Supir</a></li>
             <li><img src="file.png" alt=""><a href="/admin_vehicles">Data Kendaraan</a></li>
             <li><img src="alert.png" alt=""><a href="/admin_complainlist">Daftar Komplain</a></li>

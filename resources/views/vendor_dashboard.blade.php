@@ -13,7 +13,9 @@
     <ul>
         <h2>SIVASAK</h2>
         <li><img src="{{asset('home.png')}}" alt=""><a href="/vendor_dashboard">Dashboard</a></li>
-        <li><img src="{{asset('sh.png')}}" alt=""><a href="negosiasivendor.php">Negosiasi</a></li>
+        <li><img src="{{asset('pb.png')}}" alt=""><a href="/vendor_register">Pendaftaran Vendor</a></li>
+        <li><img src="{{asset('file.png')}}" alt=""><a href="/vendor_questioner">Questioner</a></li>
+        <li><img src="{{asset('sh.png')}}" alt=""><a href="/vendor_negotiate">Negosiasi</a></li>
         <li><img src="{{asset('pb.png')}}" alt=""><a href="/vendor_offer_list">Daftar Tawaran Perusahaan</a></li>
     </ul>
 </div>
@@ -39,30 +41,30 @@
         <h2>Informasi Vendor</h2>
         <div class="info-container">
             <table>
-                <tr>
-                    <td>Nama Vendor</td>
-                    <td>: Vendor A</td>
-                </tr>
-                <tr>
-                    <td>No. Telepon</td>
-                    <td>: 081234567890</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>: vendor@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>Tipe Perusahaan</td>
-                    <td>: PT</td>
-                </tr>
-                <tr>
-                    <td>NPWP</td>
-                    <td>: 123.4567899</td>
-                </tr>
-                <tr>
-                    <td>Alamat Perusahaan</td>
-                    <td>: Jl. Belimbing Raya</td>
-                </tr>
+            <tr>
+                <td>Nama Vendor</td>
+                <td>: {{ $user->name }}</td> <!-- Pastikan ini tidak ada kesalahan penulisan -->
+            </tr>
+            <tr>
+                <td>No. Telepon</td>
+                <td>: {{ $user->phone_number }}</td> <!-- Periksa kesalahan sintaksis atau tanda kurung -->
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>: {{ $user->email }}</td>
+            </tr>
+            <tr>
+                <td>Tipe Perusahaan</td>
+                <td>: {{ $vendor ? $vendor->business_type : 'Tidak tersedia' }}</td>
+            </tr>
+            <tr>
+                <td>NPWP</td>
+                <td>: {{ $vendor ? $vendor->NPWP : 'Tidak tersedia' }}</td>
+            </tr>
+            <tr>
+                <td>Alamat Perusahaan</td>
+                <td>: {{ $vendor ? $vendor->address : 'Tidak tersedia' }}</td>
+            </tr>
             </table>
         </div>
     </div>

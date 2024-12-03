@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id('vehicle_id');
             $table->foreignId('user_id')->constrained('users', 'user_id');
             $table->string('vehicle_plate');
-            $table->string('vehicle_type');
             $table->string('year');
+            $table->string('vehicle_type');
             $table->string('vehicle_registration');
             $table->date('vehicle_tax');
             $table->date('registration_expired');

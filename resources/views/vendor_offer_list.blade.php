@@ -13,7 +13,9 @@
     <ul>
         <h2>SIVASAK</h2>
         <li><img src="{{asset('home.png')}}" alt=""><a href="/vendor_dashboard">Dashboard</a></li>
-        <li><img src="{{asset('sh.png')}}" alt=""><a href="negosiasivendor.php">Negosiasi</a></li>
+        <li><img src="{{asset('pb.png')}}" alt=""><a href="/vendor_register">Pendaftaran Vendor</a></li>
+        <li><img src="{{asset('file.png')}}" alt=""><a href="/vendor_questioner">Questioner</a></li>
+        <li><img src="{{asset('sh.png')}}" alt=""><a href="/vendor_negotiate">Negosiasi</a></li>
         <li><img src="{{asset('pb.png')}}" alt=""><a href="/vendor_offer_list">Daftar Tawaran Perusahaan</a></li>
     </ul>
 </div>
@@ -114,7 +116,7 @@
                                 Tidak ada lampiran
                             @endif
                         </td>
-                        <td><button class="apply-btn" onclick="openIsiModal()">Cek</button></td>
+                        <td><button class="apply-btn" onclick="openIsiModal()">Ajukan</button></td>
                     </tr>
                     @empty
                     <tr>

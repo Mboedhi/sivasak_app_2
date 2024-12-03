@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Models\vehicle;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -19,10 +20,12 @@ use App\Http\Controllers\AdminComplainListController;
 use App\Http\Controllers\AdminInputVehicleController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminMakeDriverAccController;
+use App\Http\Controllers\AdminVendorListController;
 
 
 use App\Http\Controllers\VendorOfferListController;
 use App\Http\Controllers\VendorDashController;
+use App\Http\Controllers\VendorRegisterController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -64,6 +67,10 @@ Route::get('/admin_tendercontrol', [AdminTenderController::class, 'showtendercon
 
 Route::get('/admin_maketender', [AdminMakeTenderController::class, 'showtender'])->name('admin_maketender');
 
+//list vendor
+Route::get('/admin_vendor_list', [AdminVendorListController::class, 'showvendor'])->name('admin_vendor_list');
+Route::get('/vendor/{vendor_id}/details', [AdminVendorListController::class, 'getDetails'])->name('vendor_details');
+
 //akun driver
 Route::get('/admin_makedriver', [AdminMakeDriverController::class, 'showdriver'])->name('admin_makedriver');
 Route::get('/admin_makedriveracc', [AdminMakeDriverAccController::class, 'showdriveracc'])->name('admin_makedriveracc');
@@ -88,7 +95,12 @@ Route::delete('/admin_inputvehicle/{vehicle_id}', [AdminInputVehicleController::
 
 
 
-Route::get('vendor_dashboard', [VendorDashController::class, 'showvendordash'])->name('vendor_dahsboard');
+Route::middleware(['auth'])->get('vendor_dashboard', [VendorDashController::class, 'showvendordash'])->name('vendor_dahsboard');
 
 Route::get('vendor_offer_list', [VendorOfferListController::class, 'showofferlist'])->name('vendor_offer_list');
+
+Route::get('vendor_register', [VendorRegisterController::class, 'showregister'])->name('vendor_register');
+Route::post('vendor_register', [VendorRegisterController::class, 'register'])
+    ->middleware('auth')
+    ->name('vendor_register_submit');
 

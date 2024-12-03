@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id('assessment_id');
             $table->foreignId('vendor_id')->constrained('vendors', 'vendor_id');
             $table->foreignId('item_id')->constrained('items', 'item_id');
-            $table->integer('assessment_amount');
+            $table->string('assessment_amount');
+            $table->string('assessment_note');
             $table->enum('assessment_status', ['accepted', 'rejected', 'pending']);
             $table->timestamps();
         });

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('negotiates', function (Blueprint $table) {
             $table->id('negotiate_id');
             $table->foreignId('vendor_id')->constrained('vendors', 'vendor_id');
+            $table->string('price_nego');
             $table->text('result');
             $table->timestamps();
         });

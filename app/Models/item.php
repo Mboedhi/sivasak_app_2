@@ -12,4 +12,8 @@ class Item extends Model
     protected $table = 'items';
     protected $fillable = ['item_name', 'item_type','item_desc','item_price','expired_date','attachment'];
 
+    public function item_assessment(){
+        return $this->hasOne(item_assessment::class, 'item_id', 'item_id');
+    }
+
 }

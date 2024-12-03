@@ -124,18 +124,18 @@ body {
 .button-container-supir {
     display: flex;
     justify-content: right;
-    margin-top: 10px;
     margin-bottom: 20px;
 }
 
 .button-container-tawaran, .search-container-tawaran{
     display: flex;
     align-items: right;
+    margin-bottom: 20px;
 }
 
 .wrapper {
     display: flex;
-    align-items: right;
+    align-items: center;
     justify-content: right;
     gap: 10px; /* Mengatur jarak antar elemen */
     margin-top: 10px;
@@ -1002,9 +1002,9 @@ table, th, td {
 }
 
 thead th {
-    background-color: #e1e6f4;
-    color: #333333;
-    font-weight: normal; /* Non-bold header */
+    background-color: #4891F6;
+    color: white;
+    font-weight: bold; /* Non-bold header */
     font-size: 12px; /* Consistent font size with table content */
     text-align: center; /* Center align header text */
 }
@@ -1181,4 +1181,109 @@ td img {
     border: 1px solid #ddd;
     border-radius: 4px;
     color: #495057;
+}
+/* Kelas khusus untuk halaman Daftar Questioner */
+.halaman-questioner {
+    padding: 20px;
+}
+
+.halaman-questioner h2 {
+    text-align: center; /* Judul rata tengah */
+    color: #000000; /* Warna biru */
+    margin-bottom: 20px; /* Jarak ke tabel */
+}
+
+/* Styling untuk Header */
+.header-questioner {
+    background-color: #1064E0; /* Warna biru */
+    color: rgb(11, 0, 0); /* Warna teks putih */
+    padding: 10px 20px; /* Spasi di dalam kotak */
+    display: flex; /* Gunakan flexbox */
+    justify-content: space-between; /* Elemen di kiri dan kanan */
+    align-items: center; /* Rata tengah secara vertikal */
+}
+
+.header-questioner img {
+    height: 30px; /* Ukuran ikon kecil */
+    margin-right: 50px; /* Jarak dengan teks */
+}
+
+.header-questioner span {
+    font-size: 15px; /* Ukuran teks */
+    margin-left: 1300px;
+    color: #020202;
+    font-weight: lighter;
+}
+
+.header-questioner .logout {
+    font-size: 15px;
+    text-decoration: none; /* Hilangkan garis bawah */
+    color: rgb(0, 0, 0); /* Teks putih */
+    font-weight: lighter; /* Teks tebal */
+}
+
+/* Tabel */
+.halaman-questioner .table-container {
+    overflow-x: auto; /* Tabel tidak meluap layar */
+}
+
+.halaman-questioner table {
+    width: 100%; /* Lebar penuh */
+    border-collapse: collapse; /* Hilangkan garis ganda */
+    margin: 20px auto; /* Rata tengah */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+    font-size: 14px; /* Ukuran font lebih kecil */
+}
+
+.halaman-questioner thead th {
+    background-color: #4891F6; /* Warna biru */
+    color: white; /* Teks putih */
+    padding: 8px; /* Spasi */
+    text-align: left; /* Rata tengah */
+}
+
+.halaman-questioner tbody tr:nth-child(even) {
+    background-color: #ffffff; /* Baris genap abu-abu muda */
+}
+
+.halaman-questioner tbody tr:nth-child(odd) {
+    background-color: #DEE2E6; /* Baris ganjil putih */
+}
+
+.halaman-questioner tbody tr td {
+    padding: 6px; /* Spasi lebih kecil */
+    text-align: left; /* Teks rata tengah */
+}
+
+/* Kolom nomor lebih kecil */
+.halaman-questioner table td:first-child,
+.halaman-questioner table th:first-child {
+    width: 5%; /* Lebar kolom nomor */
+    text-align: center; /* Rata tengah */
+}
+
+/* Tombol kembali */
+.halaman-questioner .back-button {
+    margin-top: 20px; /* Jarak atas */
+    margin-left: 1200px;
+    padding: 8px 16px; /* Ukuran tombol lebih kecil */
+    background-color: #007bff; /* Tombol biru */
+    color: white; /* Teks putih */
+    border: none; /* Hilangkan border */
+    border-radius: 5px; /* Sudut membulat */
+    cursor: pointer; /* Kursor tangan */
+}
+
+.halaman-questioner .back-button:hover {
+    background-color: #0056b3; /* Biru lebih gelap saat hover */
+}
+
+/* Footer */
+.footer-questioner {
+    text-align: left; /* Teks rata tengah */
+    margin-top: 20px; /* Jarak atas */
+    padding: 10px 0; /* Spasi vertikal */
+    background-color: #0056b3; /* Warna abu-abu muda */
+    color: #333; /* Teks abu-abu gelap */
+    font-size: 12px; /* Ukuran font kecil */
 }

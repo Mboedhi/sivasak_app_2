@@ -16,9 +16,9 @@
             <li><img src="{{asset("cb.png")}}" alt=""><a href="/admin_vendorselection">Seleksi Vendor</a></li>
             <li><img src="{{asset("sh.png")}}" alt=""><a href="/admin_negotiate">Negosiasi</a></li>
             <li><img src="{{asset("undo.png")}}" alt=""><a href="/admin_tendercontrol">Kontrol Tender</a></li>
-            <li><img src="{{asset("file.png")}}" alt=""><a href="daftarquestioner.php">Questioner</a></li>
+            <li><img src="{{asset("file.png")}}" alt=""><a href="/admin_questionaire">Questioner</a></li>
             <li><img src="{{asset("bat.png")}}" alt=""><a href="/admin_maketender">Buat Akun Vendor</a></li>
-            <li><img src="{{asset("bat.png")}}"alt=""><a href="datacalonvendor.php">Data Calon Vendor</a></li>
+            <li><img src="{{asset("bat.png")}}"alt=""><a href="/admin_vendor_list">Data Calon Vendor</a></li>
             <li><img src="{{asset("as.png")}}" alt=""><a href="/admin_makedriver">Buat Akun Supir</a></li>
             <li><img src="{{asset("file.png")}}" alt=""><a href="/admin_vehicles">Data Kendaraan</a></li>
             <li><img src="{{asset("alert.png")}}" alt=""><a href="/admin_complainlist">Daftar Komplain</a></li>
@@ -68,6 +68,26 @@
      </div>
 </form>
 </div>
+
+<script>
+    // Fungsi untuk mendapatkan tanggal hari ini dalam format YYYY-MM-DD
+    function getTodayDate() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // Bulan di JavaScript dimulai dari 0
+        const day = String(today.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    // Terapkan atribut min ke semua input bertipe date
+    document.addEventListener("DOMContentLoaded", () => {
+        const today = getTodayDate();
+        // Tetapkan batas minimal untuk semua input tipe date
+        document.querySelectorAll('input[type="date"]').forEach(input => {
+            input.setAttribute('min', today);
+        });
+    });
+</script>
 
 </body>
 </html>
