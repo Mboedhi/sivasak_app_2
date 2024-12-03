@@ -45,47 +45,6 @@
         <input type="text" placeholder="">
         <button class="search-button">Cari</button>
     </div>
-
-        <!-- <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th><input type="checkbox"></th>
-                        <th>Judul Tawaran</th>
-                        <th>Jenis Barang</th>
-                        <th>Range Harga</th>
-                        <th>Masa Berlaku</th>
-                        <th>Deskripsi</th>
-                        <th>Lampiran</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                     Example rows, these should be populated dynamically
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>Education Supply</td> 
-                        <td>Alat Tulis</td>
-                        <td>Rp1.000.000 - Rp5.000.000</td>
-                        <td>25/05/2023</td>
-                        <td>contoh</td>
-                        <td> - </td>
-                        <td><a href="detailtawaran.php"><button class="apply-btn">Cek</button></a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>Medical Equipment</td>
-                        <td>Peralatan Medis</td>
-                        <td>Rp5.000.000 - Rp10.000.000</td>
-                        <td>01/06/2023</td>
-                        <td> contoh </td>
-                        <td> -</td>
-                        <td><a href="detailtawaran.php"><button class="apply-btn">Cek</button></a></td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-        </div> -->
             <div class="table-container">
             <table>
                 <thead>

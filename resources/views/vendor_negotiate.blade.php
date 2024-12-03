@@ -84,10 +84,6 @@
         </div>
     </div>
 
-    <div class="footer">
-        Copyright © 2024. All rights reserved.
-    </div>
-
     <!-- Modal Pop-up untuk Hapus Vendor -->
     <div class="delete-modal" id="delete-modal">
         <div class="delete-modal-content">

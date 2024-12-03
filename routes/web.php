@@ -1,6 +1,7 @@
 <?php
 
 
+
 use App\Models\vehicle;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\AdminVendorListController;
 use App\Http\Controllers\VendorOfferListController;
 use App\Http\Controllers\VendorDashController;
 use App\Http\Controllers\VendorRegisterController;
+use App\Http\Controllers\VendorNegotiateController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -103,4 +105,6 @@ Route::get('vendor_register', [VendorRegisterController::class, 'showregister'])
 Route::post('vendor_register', [VendorRegisterController::class, 'register'])
     ->middleware('auth')
     ->name('vendor_register_submit');
+
+Route::get('/vendor_negotiate', [VendorNegotiateController::class, 'show_vendornegotiate'])->name('vendor_negotiate');
 
