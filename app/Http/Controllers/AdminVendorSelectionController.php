@@ -10,23 +10,50 @@ use App\Models\Item;
 class AdminVendorSelectionController extends Controller
 {
     public function showvendorselection() {
-        $vendors = item_assessment::where('assessment_status', 'pending')->get();
-        return view('admin_vendorselection', compact('vendors'));
+        // $vendors = vendor::all();
+        $item_assessments = item_assessment::with('item', 'vendor')->get();
+
+        return view('admin_vendorselection', compact('item_assessments'));
     }
 
-    public function acceptVendor($vendor_id){
-        $vendor = item_assessment::findOrFail($vendor_id);
-        $vendor->assessment_status = 'accepted';
-        $vendor->save();
+    public function acceptVendor($vendor_id)
+    {
+        try {
+            $item_assessment = item_assessment::where('vendor_id', $vendor_id)
+                ->where('assessment_status', 'pending')
+                ->first();
 
-        return response()->json(['message' => 'Tawaran vendor diterima']);
+            if ($item_assessment) {
+                $item_assessment->assessment_status = 'accepted';
+                $item_assessment->save();
+
+                return response()->json(['message' => 'Tawaran berhasil diterima.']);
+            }
+
+            return response()->json(['message' => 'Tawaran tidak ditemukan atau sudah diproses.'], 404);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Terjadi kesalahan saat memproses tawaran.'], 500);
+        }
     }
 
-    public function rejectVendor($vendor_id){
-        $vendor = item_assessment::findOrFail($vendor_id);
-        $vendor->assessment_status = 'rejected';
-        $vendor->save();
+    // Menolak tawaran vendor
+    public function rejectVendor($vendor_id)
+    {
+        try {
+            $item_assessment = item_assessment::where('vendor_id', $vendor_id)
+                ->where('assessment_status', 'pending')
+                ->first();
 
-        return response()->json(['message' => 'Tawaran vendor ditolak']);
+            if ($item_assessment) {
+                $item_assessment->assessment_status = 'rejected';
+                $item_assessment->save();
+
+                return response()->json(['message' => 'Tawaran berhasil ditolak.']);
+            }
+
+            return response()->json(['message' => 'Tawaran tidak ditemukan atau sudah diproses.'], 404);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Terjadi kesalahan saat memproses tawaran.'], 500);
+        }
     }
 }

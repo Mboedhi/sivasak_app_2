@@ -58,19 +58,23 @@
                 <tr>
                     <th>Nama Perusahaan</th>
                     <th>NIB Perusahaan</th>
-                    <th>Judul Tawaran</th>
+                    <th>Nama Barang</th>
+                    <th>Catatan Tawaran</th>
+                    <th>Status Tawaran</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($vendors as $vendor)
+                @foreach ($item_assessments as $item_assessment)
                 <tr>
-                    <td>{{ $vendor->company_name }}</td>
-                    <td>{{ $vendor->NIB }}</td>
-                    <td>test</td>
+                    <td>{{ $item_assessment->vendor->company_name}}</td>
+                    <td>{{ $item_assessment->vendor->NIB}}</td>
+                    <td>{{ $item_assessment->item->item_name}}</td>
+                    <td>{{ $item_assessment->assessment_note}}</td>
+                    <td>{{ $item_assessment->assessment_status}}</td>
                     <td>
-                        <button class="cek-button" onclick="acceptVendor({{$vendor->vendor_id}})">Terima Tawaran</button>
-                        <button class="delete-button" onclick="rejectVendor({{$vendor->vendor_id}})">Tolak Tawaran</button>
+                        <button class="cek-button" onclick="acceptVendor({{$item_assessment->vendor_id}})">Terima Tawaran</button>
+                        <button class="delete-button" onclick="rejectVendor({{$item_assessment->vendor_id}})">Tolak Tawaran</button>
                     </td>
                 </tr>
                 @endforeach

@@ -14,7 +14,7 @@ class item_assessment extends Model
     protected $fillable = ['vendor_id', 'item_id', 'assessment_amount', 'assessment_note', 'assessment_status'];
 
     public function item(){
-        return $this->belongsTo(Item::class, 'item_id', 'item_id');
+        return $this->belongsTo(Item::class, 'item_id');
     }
 
     public function vendor(){
