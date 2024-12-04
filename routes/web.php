@@ -22,12 +22,14 @@ use App\Http\Controllers\AdminInputVehicleController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminMakeDriverAccController;
 use App\Http\Controllers\AdminVendorListController;
+use App\Http\Controllers\AdminQuesionerController;
 
 
 use App\Http\Controllers\VendorOfferListController;
 use App\Http\Controllers\VendorDashController;
 use App\Http\Controllers\VendorRegisterController;
 use App\Http\Controllers\VendorNegotiateController;
+use App\Http\Controllers\VendorQuesionerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,6 +51,9 @@ Route::post('/register', action: [RegisterController::class, 'register'])->name(
 //dashboard
 Route::get('/admin_dashboard', [AdminDashController::class, 'showadmindash'])->name('admin_dashboard');
 
+//questioner
+Route::get('/admin_questionaire', [AdminQuesionerController::class, 'index'])->name('admin_daftarquestioner');
+Route::get('/admin_questionaire/{id}', [AdminQuesionerController::class, 'show'])->name('admin_detailquestioner');
 
 //tawaran
 Route::get('/admin_showoffering', [AdminOfferingController::class, 'showoffering'])->name('admin_showoffering');
@@ -60,8 +65,11 @@ Route::get('/admin_editoffering/{item_id}', [AdminOfferingController::class, 'Ed
 Route::put('/admin_offering/{item_id}', [AdminOfferingController::class, 'EditData'])->name('admin_updateoffering');
 Route::delete('/admin_offering/{item_id}', [AdminOfferingController::class, 'DeleteData'])->name('admin_deleteitem');
 
-
+//seleksi vendor
 Route::get('/admin_vendorselection', [AdminVendorSelectionController::class, 'showvendorselection'])->name('admin_vendorselection');
+Route::post('/admin_vendorselection/accept/{vendor_id}', [AdminVendorSelectionController::class, 'acceptVendor'])->name('accept_vendor');
+Route::post('/admin_vendorselection/reject/{vendor_id}', [AdminVendorSelectionController::class, 'rejectVendor'])->name('reject_vendor');
+
 
 Route::get('/admin_negotiate', [AdminNegotiateController::class, 'shownegotiate'])->name('admin_negotiate');
 
@@ -110,4 +118,8 @@ Route::post('vendor_register', [VendorRegisterController::class, 'register'])
     ->name('vendor_register_submit');
 
 Route::get('/vendor_negotiate', [VendorNegotiateController::class, 'show_vendornegotiate'])->name('vendor_negotiate');
+
+Route::get('/vendor_questioner', [VendorQuesionerController::class, 'index'])->middleware('auth')->name('vendor_questioner');
+
+Route::post('/vendor_questioner', [VendorQuesionerController::class, 'store'])->middleware('auth')->name('vendor_questioner.submit');
 

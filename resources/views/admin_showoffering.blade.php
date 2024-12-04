@@ -25,7 +25,6 @@
         </ul>
     </div>
 </header>
-
 <body>
 <!-- Navbar -->
 <div class="navbar">

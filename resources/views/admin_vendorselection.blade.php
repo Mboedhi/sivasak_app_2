@@ -63,15 +63,17 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($vendors as $vendor)
                 <tr>
                     <td>{{ $vendor->company_name }}</td>
                     <td>{{ $vendor->NIB }}</td>
-                    <td>{{ $vendor->}}</td>
+                    <td>test</td>
                     <td>
-                        <button class="cek-button" onclick="openModal()">Terima Tawaran</button>
-                        <button class="delete-button" onclick="openDeleteModal()">Tolak Tawaran</button>
+                        <button class="cek-button" onclick="acceptVendor({{$vendor->vendor_id}})">Terima Tawaran</button>
+                        <button class="delete-button" onclick="rejectVendor({{$vendor->vendor_id}})">Tolak Tawaran</button>
                     </td>
                 </tr>
+                @endforeach
                 <!-- Tambahkan baris data vendor lainnya -->
             </tbody>
         </table>
@@ -104,6 +106,41 @@
 </div>
 
 <script>
+    function acceptVendor(vendor_id) {
+        fetch(`/admin_vendorselection/accept/${vendor_id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        }).then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            location.reload(); // Reload halaman setelah berhasil
+        }).catch(error => {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan saat menerima tawaran.');
+        });
+    }
+
+    function rejectVendor(vendor_id) {
+        fetch(`/admin_vendorselection/reject/${vendor_id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        }).then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            location.reload(); // Reload halaman setelah berhasil
+        }).catch(error => {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan saat menolak tawaran.');
+        });
+    }
+
+
     function openModal() {
         document.getElementById('modal').style.display = 'flex';
     }
