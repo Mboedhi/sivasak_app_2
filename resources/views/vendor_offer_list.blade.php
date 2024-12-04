@@ -75,7 +75,7 @@
                                 Tidak ada lampiran
                             @endif
                         </td>
-                        <td><button class="apply-btn" onclick="openIsiModal()">Ajukan</button></td>
+                        <td><button class="apply-btn" onclick="openIsiModal({{$item->item_id}})">Ajukan</button></td>
                     </tr>
                     @empty
                     <tr>
@@ -89,12 +89,16 @@
     <div class="modal" id="isi-modal">
         <div class="modal-content">
             <h3>Isi Form</h3>
-            <form action="submit_isi.php" method="POST">
+            <form action="{{ route('vendor_store_offer') }}" method="POST">
+                @csrf
+                <input type="hidden" name="item_id" id="item_id_modal">
+                <input type="hidden" name="vendor_id" value="{{ auth()->user()->vendor->vendor_id }}">
+
                 <label for="quantity">Jumlah Barang:</label>
-                <input type="number" id="quantity" name="quantity" required>
+                <input type="number" id="quantity" name="assessment_amount" required>
 
                 <label for="notes">Catatan:</label>
-                <textarea id="notes" name="notes" rows="4"></textarea>
+                <textarea id="notes" name="assessment_note" rows="4"></textarea>
 
                 <div class="modal-buttons">
                     <button type="submit" class="submit-button">Kirim</button>
@@ -106,7 +110,8 @@
 </div>
 
 <script>
-    function openIsiModal() {
+    function openIsiModal(itemId) {
+        document.getElementById('item_id_modal').value = itemId;
         document.getElementById('isi-modal').style.display = 'flex';
     }
 

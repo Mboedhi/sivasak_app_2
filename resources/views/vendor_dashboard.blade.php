@@ -43,11 +43,11 @@
             <table>
             <tr>
                 <td>Nama Vendor</td>
-                <td>: {{ $user->name }}</td> <!-- Pastikan ini tidak ada kesalahan penulisan -->
+                <td>: {{ $user->name }}</td> 
             </tr>
             <tr>
                 <td>No. Telepon</td>
-                <td>: {{ $user->phone_number }}</td> <!-- Periksa kesalahan sintaksis atau tanda kurung -->
+                <td>: {{ $user->phone_number }}</td> 
             </tr>
             <tr>
                 <td>Email</td>

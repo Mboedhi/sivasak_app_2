@@ -2,12 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use NumberFormatter;
-use App\Models\item;
+use App\Models\Item;
+use App\Models\vendor;
+use App\Models\item_assessment;
 
 class VendorOfferListController extends Controller
 {
+
+    public function storeassessment(Request $request){
+        
+        $validateData = $request->validate([
+            'assessment_amount' => 'required|integer|min:1',
+            'assessment_note' => 'nullable|string',
+            'item_id' => 'required|exists:items,item_id'
+        ]);
+
+        $vendor_id = Auth::user()->vendor->vendor_id;
+
+        item_assessment::create([
+            'vendor_id' => $vendor_id,
+            'item_id' => $validateData['item_id'],
+            'assessment_amount' => $validateData['assessment_amount'],
+            'assessment_note' => $validateData['assessment_note'],
+            'assessment_status' => 'pending',
+        ]);
+        return redirect()->route('vendor_offer_list')->with('success', 'Data tawaran berhasil diajukan.');
+    }
+
     public function showofferlist(){
         $items = item::all();
 

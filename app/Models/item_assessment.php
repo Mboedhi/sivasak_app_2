@@ -10,7 +10,7 @@ class item_assessment extends Model
     use HasFactory;
 
     protected $primaryKey = 'assessment_id';
-    protected $table = 'item_assessment';
+    protected $table = 'item_assessments';
     protected $fillable = ['vendor_id', 'item_id', 'assessment_amount', 'assessment_note', 'assessment_status'];
 
     public function item(){

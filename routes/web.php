@@ -99,8 +99,11 @@ Route::delete('/admin_inputvehicle/{vehicle_id}', [AdminInputVehicleController::
 
 Route::middleware(['auth'])->get('vendor_dashboard', [VendorDashController::class, 'showvendordash'])->name('vendor_dahsboard');
 
+//offering
 Route::get('vendor_offer_list', [VendorOfferListController::class, 'showofferlist'])->name('vendor_offer_list');
+Route::post('vendor_offer_list/submit', [VendorOfferListController::class, 'storeassessment'])->name('vendor_store_offer');
 
+//tambah data vendor
 Route::get('vendor_register', [VendorRegisterController::class, 'showregister'])->name('vendor_register');
 Route::post('vendor_register', [VendorRegisterController::class, 'register'])
     ->middleware('auth')

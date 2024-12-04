@@ -58,18 +58,18 @@
                 <tr>
                     <th>Nama Perusahaan</th>
                     <th>NIB Perusahaan</th>
-                    <th>Alamat Perusahaan</th>
+                    <th>Judul Tawaran</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Vendor A</td>
-                    <td>1234567890</td>
-                    <td>Jl. Manggis Raya</td>
+                    <td>{{ $vendor->company_name }}</td>
+                    <td>{{ $vendor->NIB }}</td>
+                    <td>{{ $vendor->}}</td>
                     <td>
-                        <button class="cek-button" onclick="openModal()">Cek</button>
-                        <button class="delete-button" onclick="openDeleteModal()">Hapus</button>
+                        <button class="cek-button" onclick="openModal()">Terima Tawaran</button>
+                        <button class="delete-button" onclick="openDeleteModal()">Tolak Tawaran</button>
                     </td>
                 </tr>
                 <!-- Tambahkan baris data vendor lainnya -->
