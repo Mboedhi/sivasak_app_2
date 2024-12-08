@@ -46,22 +46,23 @@
                 <thead>
                     <tr>
                         <th>Nama Vendor</th>
-                        <th>Tanggal</th>
-                        <th>Judul</th>
+                        <th>Nama Barang</th>
+                        <th>Harga Tawaran</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($negotiations as $negotiate)
                     <tr>
-                        <td>Vendor A</td>
-                        <td>01/01/2024</td>
-                        <td>Judul 1</td>
+                        <td>{{ $negotiate->item_assessment->vendor->vendor_name ?? 'N/A'}}</td>
+                        <td>{{ $negotiate->item_assessment->item->item_name ?? 'N/A'}}</td>
+                        <td>{{ $negotiate->price_nego ?? 'N/A'}}</td>
                         <td>
                             <button class="accept-button" onclick="acceptTender()">Terima</button>
-                            <button class="edit-button" onclick="openModal()">Cek</button>
-                            <button class="delete-button" onclick="openDeleteModal()">Hapus</button>
+                            <button class="delete-button" onclick="openDeleteModal()">Tolak</button>
                         </td>
                     </tr>
+                    @endforeach
                     <!-- Tambahkan baris lainnya sesuai kebutuhan -->
                 </tbody>
             </table>
@@ -73,7 +74,7 @@
         <div class="modal-content">
             <h3>Detail Negosiasi</h3>
             <p>Nama Vendor: Vendor A</p>
-            <p>Judul: Judul 1</p>
+            <p>Nama Barang: test</p>
             <p>Harga Tawaran: Rp 10.000.000</p>
             <p>Catatan : Tawaran pertama</p>
             <div class="modal-buttons">

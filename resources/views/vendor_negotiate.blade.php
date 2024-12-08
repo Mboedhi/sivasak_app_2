@@ -46,7 +46,7 @@
                 <thead>
                     <tr>
                         <th>Nama Vendor</th>
-                        <th>Judul</th>
+                        <th>Nama Barang</th>
                         <th>Harga Awal</th>
                         <th>Harga Negosiasi</th>
                         <th>Status</th>
@@ -54,31 +54,47 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    // Sample data - replace with database query
-                    $data = array(
-                        array("PT. JAYA", "12345/789", "Rp.100.000.000", "Rp.90.000.000", "Disetujui"),
-                        array("PT. JAYA", "12345/789", "Rp.100.000.000", "Rp.90.000.000", "Disetujui"),
-                        array("PT. JAYA", "12345/789", "Rp.100.000.000", "Rp.90.000.000", "Disetujui"),
-                        array("PT. JAYA", "12345/789", "Rp.100.000.000", "Rp.90.000.000", "Disetujui"),
-                    );
-
-                    foreach($data as $row) {
-                        echo "<tr>";
-                        echo "<td>{$row[0]}</td>";
-                        echo "<td>{$row[1]}</td>";
-                        echo "<td>{$row[2]}</td>";
-                        echo "<td>{$row[3]}</td>";
-                        echo "<td><span class='status'>{$row[4]}</span></td>";
-                        echo "<td>
-                                <a href='negosiasivendordetail.php?id={$row[0]}' style='text-decoration: none;'>
-                                    <button class='cek-button'>Cek</button>
+                    @foreach ($item_assessments as $item_assessment)
+                        <tr>
+                            <td>{{ $item_assessment->vendor->company_name}}</td>
+                            <td>{{ $item_assessment->item->item_name}}</td>
+                            <td>Rp.{{ number_format($item_assessment->item->item_price, 0, ',', '.')}}</td>
+                            <td>Rp.{{ $item_assessment->negotiate ? number_format($item_assessment->negotiate->price_nego, 0, ',', '.') : ' -' }}</td>
+                            <td>{{$item_assessment->negotiate ? $item_assessment->negotiate->result : ' -'}}</td>
+                            <td>
+                                <a href="{{ url('vendor_negotiate_detail', ['assessment_id' => $item_assessment->assessment_id]) }}" style="text-decoration: none;">
+                                    <button class="cek-button">Cek</button>
                                 </a>
-                                <button class='delete-button' onclick='openDeleteModal()'>Hapus</button>
-                                </td>";
-                        echo "</tr>";
-                    }
-                    ?>
+                                <button class="delete-button" onclick="openDeleteModal()">Hapus</button>
+                            </td>
+                        </tr>
+                    @endforeach
+
+                    <!-- <?php
+                    // Sample data - replace with database query
+                    // $data = array(
+                    //     array("PT. JAYA", "12345/789", "Rp.100.000.000", "Rp.90.000.000", "Disetujui"),
+                    //     array("PT. JAYA", "12345/789", "Rp.100.000.000", "Rp.90.000.000", "Disetujui"),
+                    //     array("PT. JAYA", "12345/789", "Rp.100.000.000", "Rp.90.000.000", "Disetujui"),
+                    //     array("PT. JAYA", "12345/789", "Rp.100.000.000", "Rp.90.000.000", "Disetujui"),
+                    // );
+
+                    // foreach($data as $row) {
+                    //     echo "<tr>";
+                    //     echo "<td>{$row[0]}</td>";
+                    //     echo "<td>{$row[1]}</td>";
+                    //     echo "<td>{$row[2]}</td>";
+                    //     echo "<td>{$row[3]}</td>";
+                    //     echo "<td><span class='status'>{$row[4]}</span></td>";
+                    //     echo "<td>
+                    //             <a href='vendor_negotiate_detail?id={$row[0]}' style='text-decoration: none;'>
+                    //                 <button class='cek-button'>Cek</button>
+                    //             </a>
+                    //             <button class='delete-button' onclick='openDeleteModal()'>Hapus</button>
+                    //             </td>";
+                    //     echo "</tr>";
+                    // }
+                    ?> -->
                 </tbody>
             </table>
         </div>

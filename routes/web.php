@@ -29,6 +29,7 @@ use App\Http\Controllers\VendorOfferListController;
 use App\Http\Controllers\VendorDashController;
 use App\Http\Controllers\VendorRegisterController;
 use App\Http\Controllers\VendorNegotiateController;
+use App\Http\Controllers\VendorNegotiateDetailController;
 use App\Http\Controllers\VendorQuesionerController;
 
 Route::get('/', function () {
@@ -70,7 +71,7 @@ Route::get('/admin_vendorselection', [AdminVendorSelectionController::class, 'sh
 Route::post('/admin_vendorselection/accept/{vendor_id}', [AdminVendorSelectionController::class, 'acceptVendor'])->name('accept_vendor');
 Route::post('/admin_vendorselection/reject/{vendor_id}', [AdminVendorSelectionController::class, 'rejectVendor'])->name('reject_vendor');
 
-
+//negosiasi
 Route::get('/admin_negotiate', [AdminNegotiateController::class, 'shownegotiate'])->name('admin_negotiate');
 
 Route::get('/admin_tendercontrol', [AdminTenderController::class, 'showtendercontrol'])->name('admin_tendercontrol');
@@ -94,7 +95,7 @@ Route::put('/admin_makedriveracc/edit/{user_id}', [AdminMakeDriverAccController:
 Route::get('/admin_vehicles', [AdminVehiclesController::class, 'showvehiclescontroller'])->name('admin_vehicles');
 Route::get('/vehicle/{vehicle_id}/details', [AdminVehiclesController::class, 'getDetails'])->name('vehicle_details');
 
-
+//input kendaraan
 Route::get('/admin_complainlist', [AdminComplainListController::class, 'showcomplaincontroller'])->name('admin_complainlist');
 
 Route::get('/admin_inputvehicle', [AdminInputVehicleController::class, 'showinputvehicle'])->name('admin_inputvehicle');
@@ -117,9 +118,17 @@ Route::post('vendor_register', [VendorRegisterController::class, 'register'])
     ->middleware('auth')
     ->name('vendor_register_submit');
 
-Route::get('/vendor_negotiate', [VendorNegotiateController::class, 'show_vendornegotiate'])->name('vendor_negotiate');
+//negosiasi
+Route::middleware(['auth'])->get('/vendor_negotiate', [VendorNegotiateController::class, 'show_vendornegotiate'])->name('vendor_negotiate');
+Route::get('vendor_negotiate_detail', [VendorNegotiateDetailController::class, 'show_vendornegotiatedetail'])->name('vendor_negotiate_detail');
 
+Route::get('/vendor_negotiate_detail/{assessment_id}', [VendorNegotiateDetailController::class, 'show_vendornegotiatedetail'])->name('vendor_negotiate_detail');
+Route::post('/vendor_negotiate_detail/store', [VendorNegotiateDetailController::class, 'store'])
+    ->middleware('auth')
+    ->name('vendor_negotiate_detail.store');
+
+
+//quesioner
 Route::get('/vendor_questioner', [VendorQuesionerController::class, 'index'])->middleware('auth')->name('vendor_questioner');
-
 Route::post('/vendor_questioner', [VendorQuesionerController::class, 'store'])->middleware('auth')->name('vendor_questioner.submit');
 

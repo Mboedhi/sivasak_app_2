@@ -19,6 +19,10 @@ class item_assessment extends Model
 
     public function vendor(){
         return $this->belongsTo(vendor::class, 'vendor_id', 'vendor_id');
-    }   
+    }  
+
+    public function negotiate(){
+        return $this->hasOne(negotiate::class, 'assessment_id', 'assessment_id');
+    }
 
 }
