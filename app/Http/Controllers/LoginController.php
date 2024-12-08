@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
-    public function showlogin() {
+    public function showlogin()
+    {
+        Log::info('User logged in.');
         return view('login');
     }
 

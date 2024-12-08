@@ -17,8 +17,7 @@
             <li><img src="{{asset("sh.png")}}" alt=""><a href="/admin_negotiate">Negosiasi</a></li>
             <li><img src="{{asset("undo.png")}}" alt=""><a href="/admin_tendercontrol">Kontrol Tender</a></li>
             <li><img src="{{asset("file.png")}}" alt=""><a href="/admin_questionaire">Questioner</a></li>
-            <li><img src="{{asset("bat.png")}}" alt=""><a href="/admin_maketender">Buat Akun Vendor</a></li>
-            <li><img src="{{asset("bat.png")}}"alt=""><a href="/admin_vendor_list">Data Calon Vendor</a></li>
+            <li><img src="{{asset("bat.png")}}" alt=""><a href="/admin_vendor_list">Data Calon Vendor</a></li>
             <li><img src="{{asset("as.png")}}" alt=""><a href="/admin_makedriver">Buat Akun Supir</a></li>
             <li><img src="{{asset("file.png")}}" alt=""><a href="/admin_vehicles">Data Kendaraan</a></li>
             <li><img src="{{asset("alert.png")}}" alt=""><a href="/admin_complainlist">Daftar Komplain</a></li>
@@ -68,7 +67,7 @@
                     <th>No. Rekening</th>
                     <th>Cabang</th>
                     <th>Atas Nama</th>
-                    <th>Aksi</th>
+                    <!-- <th>Aksi</th> -->
                 </tr>
             </thead>
                 <tbody>
@@ -89,10 +88,10 @@
                         <td>{{ $vendor->acc_num }}</td>
                         <td>{{ $vendor->behalf }}</td>
                         <td>{{ $vendor->status }}</td>
-                        <td>
+                      <!--  <td>
                             <button class="delete-button" onclick="openDeleteModal()">Hapus</button>
-                            <!-- <button class="cek-button" onclick="window.location.href='detaildatacalonvendor.php' ">Cek</button> -->
-                        </td>
+                             <button class="cek-button" onclick="window.location.href='detaildatacalonvendor.php' ">Cek</button> 
+                        </td> -->
                     </tr>
                     @empty
                     <tr>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Negosiasi</title>
     <link rel="stylesheet" href="{{ asset('styledash.css') }}">
@@ -15,30 +16,29 @@
             <li><img src="{{asset("sh.png")}}" alt=""><a href="/admin_negotiate">Negosiasi</a></li>
             <li><img src="{{asset("undo.png")}}" alt=""><a href="/admin_tendercontrol">Kontrol Tender</a></li>
             <li><img src="{{asset("file.png")}}" alt=""><a href="/admin_questionaire">Questioner</a></li>
-            <li><img src="{{asset("bat.png")}}" alt=""><a href="/admin_maketender">Buat Akun Vendor</a></li>
-            <li><img src="{{asset("bat.png")}}"alt=""><a href="/admin_vendor_list">Data Calon Vendor</a></li>
+            <li><img src="{{asset("bat.png")}}" alt=""><a href="/admin_vendor_list">Data Calon Vendor</a></li>
             <li><img src="{{asset("as.png")}}" alt=""><a href="/admin_makedriver">Buat Akun Supir</a></li>
             <li><img src="{{asset("file.png")}}" alt=""><a href="/admin_vehicles">Data Kendaraan</a></li>
             <li><img src="{{asset("alert.png")}}" alt=""><a href="/admin_complainlist">Daftar Komplain</a></li>
         </ul>
     </div>
 </header>
-
 <body>
-<!-- Navbar -->
-<div class="navbar">
-    <div class="menu">
-        <ul>
-            <li><a href="#">Admin</a><img src="{{asset('bp.png')}}" alt=""></li>
-            <li>
-                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </li>
-        </ul>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="menu">
+            <ul>
+                <li><a href="#">Admin</a><img src="{{asset('bp.png')}}" alt=""></li>
+                <li>
+                    <a href="#"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
     <div class="content">
         <h2>Daftar Negosiasi</h2>
         <div class="table-container">
@@ -53,15 +53,28 @@
                 </thead>
                 <tbody>
                     @foreach ($negotiations as $negotiate)
-                    <tr>
-                        <td>{{ $negotiate->item_assessment->vendor->vendor_name ?? 'N/A'}}</td>
-                        <td>{{ $negotiate->item_assessment->item->item_name ?? 'N/A'}}</td>
-                        <td>{{ $negotiate->price_nego ?? 'N/A'}}</td>
-                        <td>
-                            <button class="accept-button" onclick="acceptTender()">Terima</button>
-                            <button class="delete-button" onclick="openDeleteModal()">Tolak</button>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ $negotiate->item_assessment->vendor->company_name ?? 'N/A'}}</td>
+                            <td>{{ $negotiate->item_assessment->item->item_name ?? 'N/A'}}</td>
+                            <td>{{ $negotiate->price_nego ?? 'N/A'}}</td>
+                            <td>
+
+                                <form action="{{ url('/admin_negotiate/terima', $negotiate->negotiate_id) }}" method="post">
+                                    @csrf
+                                    <button class="accept-button" onclick="acceptTender()">Terima</button>
+                                </form>
+                                <form action="{{ url('/admin_negotiate/tolak', $negotiate->negotiate_id) }}" method="post">
+                                    @csrf
+                                    <button class="delete-button" onclick="openDeleteModal()">Tolak</button>
+                                </form>
+
+                                <form action="{{ url('/admin_negotiate/hapus', $negotiate->negotiate_id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="delete-button" type="submit">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
                     @endforeach
                     <!-- Tambahkan baris lainnya sesuai kebutuhan -->
                 </tbody>
@@ -103,9 +116,9 @@
             document.getElementById('modal').style.display = 'none';
         }
 
-        function openDeleteModal() {
-            document.getElementById('delete-modal').style.display = 'flex';
-        }
+        // function openDeleteModal() {
+        //     document.getElementById('delete-modal').style.display = 'flex';
+        // }
 
         function closeDeleteModal() {
             document.getElementById('delete-modal').style.display = 'none';
@@ -118,4 +131,5 @@
     </script>
 
 </body>
+
 </html>

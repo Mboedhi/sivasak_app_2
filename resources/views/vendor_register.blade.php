@@ -39,7 +39,7 @@
 <div class="content">
     <div class="form-container">
         <h2>Form Pendaftaran Vendor</h2>
-        <form action="{{route('vendor_register_submit')}}" method="POST">
+        <form action="{{route('vendor_register')}}" method="POST">
             @csrf
 
             <label for="nomor_rekanan">Nomor Rekanan</label>
