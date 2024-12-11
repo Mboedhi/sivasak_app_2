@@ -11,6 +11,8 @@ class complain extends Model
 
     protected $primaryKey = 'complain_id';
 
+    protected $fillable = ["user_id", "vehicle_plate", "vehicle_type", "vehicle_registration", "complain_desc", "complain_status"];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');

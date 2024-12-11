@@ -17,4 +17,10 @@ class VendorNegotiateController extends Controller
 
         return view('vendor_negotiate', compact('item_assessments'));
     }
+
+    public function delete_vendornegotiate($item_id) {
+        $item = item_assessment::findOrFail($item_id);
+        $item->delete();
+        return response()->json(['success' => true, 'message' => 'Data berhasil dihapus']);
+    }
 }

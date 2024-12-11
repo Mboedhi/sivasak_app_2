@@ -31,7 +31,7 @@
     <div class="navbar">
         <div class="menu">
             <ul>
-                <li><a href="#">Admin</a><img src="bp.png" alt=""></li>
+                <li><a href="#">Admin</a><img src="{{asset("bp.png")}}" alt=""></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </div>

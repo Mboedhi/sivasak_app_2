@@ -101,11 +101,13 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/admin_vehicles', [AdminVehiclesController::class, 'showvehiclescontroller'])->name('admin_vehicles');
     Route::get('/vehicle/{vehicle_id}/details', [AdminVehiclesController::class, 'getDetails'])->name('vehicle_details');
 
-    //input kendaraan
+  
     Route::get('/admin_complainlist', [AdminComplainListController::class, 'showcomplaincontroller'])->name('admin_complainlist');
     Route::post('/admin_complainlist/terima/{id}', [AdminComplainListController::class, 'acceptComplain']);
     Route::post('/admin_complainlist/tolak/{id}', [AdminComplainListController::class, 'rejectComplain']);
-
+    Route::get('/admin/complain/sync', [AdminComplainListController::class, 'syncComplain']);
+    
+    //input kendaraan
     Route::get('/admin_inputvehicle', [AdminInputVehicleController::class, 'showinputvehicle'])->name('admin_inputvehicle');
     Route::post('/admin_inputvehicle', [AdminInputVehicleController::class, 'StoreData'])->name('admin_storevehicle');
     Route::get('/admin_inputvehicle/edit/{vehicle_id}', [AdminInputVehicleController::class, 'showEditForm'])->name('admin_showeditvehicle');
@@ -131,7 +133,8 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
         //negosiasi
         Route::get('/vendor_negotiate', [VendorNegotiateController::class, 'show_vendornegotiate'])->name('vendor_negotiate');
-        Route::get('vendor_negotiate_detail', [VendorNegotiateDetailController::class, 'show_vendornegotiatedetail'])->name('vendor_negotiate_detail');
+        Route::get('vendor_negotiate_detail', [VendorNegotiateDetailController::class, 'show_vendornegotiatedetail'])->name(name: 'vendor_negotiate_detail');
+        Route::delete('/vendor_negotiate/{id}', [VendorNegotiateController::class, 'delete_vendornegotiate'])->name('vendor_negotiate_delete');
 
         Route::get('/vendor_negotiate_detail/{assessment_id}', [VendorNegotiateDetailController::class, 'show_vendornegotiatedetail'])->name('vendor_negotiate_detail');
         Route::post('/vendor_negotiate_detail/store', [VendorNegotiateDetailController::class, 'store'])

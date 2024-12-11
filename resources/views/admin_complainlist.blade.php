@@ -66,22 +66,24 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($complain as $com)
+                    @foreach ($complains as $complain)
                         <tr>
-                            <td> {{$com->user->name}} </td>
-                            <td> {{$com->vehicle->vehicle_plate}} </td>
-                            <td> {{$com->vehicle->vehicle_type}} </td>
-                            <td> {{$com->vehicle->vehicle_registration}} </td>
-                            <td> {{$com->complain_desc}} </td>
-                            <td> {{$com->complain_status}} </td>
+                            <td> {{$complain->user->name}} </td>
+                            
+                            <td> {{$complain->vehicle_plate}} </td>
+                            <td> {{$complain->vehicle_type}} </td>
+                            <td> {{$complain->vehicle_registration}} </td>
+
+                            <td> {{$complain->complain_desc}} </td>
+                            <td> {{$complain->complain_status}} </td>
                             <td>
 
-                                <form action=" {{ url('/admin_complainlist/terima', $com->complain_id) }} " method="post">
+                                <form action=" {{ url('/admin_complainlist/terima', $complain->complain_id) }} " method="post">
                                     @csrf
                                     <button class="accept-button" type="submit">Terima</button>
                                 </form>
 
-                                <form action=" {{ url('/admin_complainlist/tolak', $com->complain_id) }} " method="post">
+                                <form action=" {{ url('/admin_complainlist/tolak', $complain->complain_id) }} " method="post">
                                     @csrf
                                     <button class="delete-button" type="submit">Tolak</button>
                                 </form>

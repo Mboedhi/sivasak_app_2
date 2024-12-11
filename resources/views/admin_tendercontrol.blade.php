@@ -68,11 +68,11 @@
                                     data-title="{{ $item->item_assessment->item->item_name }}"
                                     data-price="{{ $item->item_assessment->negotiate->price_nego }}"
                                     data-npwp="{{ $item->NPWP }}">Cek</button>
-                                <form action="{{ url('/admin_tendercontrol/hapus', $item->vendor_id) }}" method="post">
+                                <!-- <form action="{{ url('/admin_tendercontrol/hapus', $item->vendor_id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="delete-button" type="submit">Hapus</button>
-                                </form>
+                                </form> -->
                             </td>
                         </tr>
 

@@ -14,8 +14,8 @@ class Vehicle extends Model
     protected $fillable = ['vehicle_plate', 'year', 'vehicle_type', 'vehicle_registration', 'registration_expired', 'vehicle_tax', 'head_cover_date', 'tail_cover_date', 'note', 'user_id'];
 
 
-    public function complain(): HasMany
-    {
-        return $this->hasMany(complain::class, 'vehicle_id', 'vehicle_id');
-    }
+    // public function complain(): HasMany
+    // {
+    //     return $this->hasMany(complain::class, 'vehicle_id', 'vehicle_id');
+    // }
 }

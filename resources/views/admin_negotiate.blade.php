@@ -48,6 +48,7 @@
                         <th>Nama Vendor</th>
                         <th>Nama Barang</th>
                         <th>Harga Tawaran</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -56,23 +57,17 @@
                         <tr>
                             <td>{{ $negotiate->item_assessment->vendor->company_name ?? 'N/A'}}</td>
                             <td>{{ $negotiate->item_assessment->item->item_name ?? 'N/A'}}</td>
-                            <td>{{ $negotiate->price_nego ?? 'N/A'}}</td>
+                            <td>{{ number_format($negotiate->price_nego, 0, ',', '.' ?? 'N/A')}}</td>
+                            <td>{{ $negotiate->result ?? 'N/A'}}</td>
                             <td>
+                                <!-- Tombol Terima -->
+                                <button class="accept-button" onclick="submitRequest('{{ url('/admin_negotiate/terima', $negotiate->negotiate_id) }}', 'POST')">Terima</button>
 
-                                <form action="{{ url('/admin_negotiate/terima', $negotiate->negotiate_id) }}" method="post">
-                                    @csrf
-                                    <button class="accept-button" onclick="acceptTender()">Terima</button>
-                                </form>
-                                <form action="{{ url('/admin_negotiate/tolak', $negotiate->negotiate_id) }}" method="post">
-                                    @csrf
-                                    <button class="delete-button" onclick="openDeleteModal()">Tolak</button>
-                                </form>
+                                <!-- Tombol Tolak -->
+                                <button class="delete-button" onclick="submitRequest('{{ url('/admin_negotiate/tolak', $negotiate->negotiate_id) }}', 'POST')">Tolak</button>
 
-                                <form action="{{ url('/admin_negotiate/hapus', $negotiate->negotiate_id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="delete-button" type="submit">Hapus</button>
-                                </form>
+                                <!-- Tombol Hapus -->
+                                <button class="cek-button" onclick="submitRequest('{{ url('/admin_negotiate/hapus', $negotiate->negotiate_id) }}', 'DELETE')">Hapus</button>
                             </td>
                         </tr>
                     @endforeach
@@ -108,6 +103,27 @@
     </div>
 
     <script>
+        function submitRequest(url, method) {
+            // Buat request menggunakan Fetch API
+            fetch(url, {
+                method: method,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    alert('Aksi berhasil dilakukan!');
+                    location.reload(); // Reload halaman setelah aksi berhasil
+                } else {
+                    alert('Terjadi kesalahan saat melakukan aksi.');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan.');
+            });
+        }
+
         function openModal() {
             document.getElementById('modal').style.display = 'flex';
         }
