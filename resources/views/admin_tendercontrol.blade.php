@@ -48,8 +48,8 @@
                 <thead>
                     <tr>
                         <th>Nama Vendor</th>
-                        <th>Harga Tawaran</th>
-                        <th>Judul</th>
+                        <!-- <th>Harga Tawaran</th>
+                        <th>Judul</th> -->
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -57,16 +57,16 @@
 
                     @foreach ($vendor as $item)
                         <tr>
-                            <td>{{ $item->company_name }}</td>
-                            <td> {{ $item->item_assessment->negotiate->price_nego }} </td>
-                            <td>{{ $item->item_assessment->item->item_name }}</td>
+                            <td>{{ $item->company_name ?? 'N/A' }}</td>
+                            <!-- <td> {{ $item->item_assessment->negotiate->price_nego ?? 'N/A'}} </td>
+                            <td>{{ $item->item_assessment->item->item_name ?? 'N/A'}}</td> -->
                             <td>
                                 <button class="edit-button" onclick="openModal(this)"
                                     data-company-name="{{ $item->company_name }}"
                                     data-company-type="{{ $item->company_type }}" data-address="{{ $item->address }}"
                                     data-phone="{{ $item->user->phone_number }}"
-                                    data-title="{{ $item->item_assessment->item->item_name }}"
-                                    data-price="{{ $item->item_assessment->negotiate->price_nego }}"
+                                    data-title="{{ $item->item_assessment->item->item_name }}"  
+                                    data-price="{{ $item->item_assessment->negotiate->price_nego ?? 'N/A'}}"
                                     data-npwp="{{ $item->NPWP }}">Cek</button>
                                 <!-- <form action="{{ url('/admin_tendercontrol/hapus', $item->vendor_id) }}" method="post">
                                     @csrf

@@ -49,7 +49,7 @@ class AdminComplainListController extends Controller
     public function showcomplaincontroller()
     {
         // $complain = complain::with(['user', 'vehicle'])->get();
-        $complains = complain::all();
+        $complains = complain::with('vehicle')->get();
 
         return view('admin_complainlist', compact('complains'));
     }

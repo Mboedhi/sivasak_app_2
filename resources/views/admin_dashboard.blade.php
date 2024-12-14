@@ -51,17 +51,17 @@
             <div class="card card-1">
                 <h3>Data Supir</h3>
                 <p>{{$dataSupir}}</p>
-                <button>More Info</button>
+                
             </div>
             <div class="card card-2">
                 <h3>Data Vendor</h3>
                 <p>{{$dataVendor}}</p>
-                <button>More Info</button>
+                
             </div>
             <div class="card card-3">
                 <h3>Daftar Komplain</h3>
                 <p>{{$dataKomplain}}</p>
-                <button>More Info</button>
+                
             </div>
         </div>
 
@@ -80,7 +80,7 @@
                 labels: ['Data Supir', 'Data Vendor', 'Daftar Komplain'],
                 datasets: [{
                     label: 'Traffic',
-                    data: [{{ (int) $dataSupir}},{{ (int) $dataVendor}},{{ (int) $dataKomplain}}], // Replace with dynamic values if needed
+                    data: [{{ (int) $dataSupir}},{{ (int) $dataVendor}},{{ (int) $dataKomplain}}],
                     backgroundColor: [
                         '#007bff', // Blue
                         '#dc3545', // Red

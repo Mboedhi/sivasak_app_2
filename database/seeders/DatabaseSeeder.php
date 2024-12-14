@@ -21,6 +21,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin2@gmail.com',
             'password' => bcrypt('admin1111'),
             'role' => 'admin',
+            'phone_number' => '2321',
+            'vehicle_type' => "car"
         ]);
+
+        $this->call(VehicleSeeder::class);
     }
 }

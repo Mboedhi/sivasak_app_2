@@ -70,9 +70,9 @@
                         <tr>
                             <td> {{$complain->user->name}} </td>
                             
-                            <td> {{$complain->vehicle_plate}} </td>
-                            <td> {{$complain->vehicle_type}} </td>
-                            <td> {{$complain->vehicle_registration}} </td>
+                            <td> {{$complain->vehicle->vehicle_plate}} </td>
+                            <td> {{$complain->vehicle->vehicle_type}} </td>
+                            <td> {{$complain->vehicle->vehicle_registration}} </td>
 
                             <td> {{$complain->complain_desc}} </td>
                             <td> {{$complain->complain_status}} </td>

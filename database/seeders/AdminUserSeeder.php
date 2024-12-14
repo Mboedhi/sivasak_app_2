@@ -14,6 +14,8 @@ class AdminUserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin0000'),
             'role' => 'admin',
+            'phone_number' => '38422',
+            'vehicle_type' => 'cat'
         ]);
     }
 }

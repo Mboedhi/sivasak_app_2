@@ -136,7 +136,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
         Route::get('vendor_negotiate_detail', [VendorNegotiateDetailController::class, 'show_vendornegotiatedetail'])->name(name: 'vendor_negotiate_detail');
         Route::delete('/vendor_negotiate/{id}', [VendorNegotiateController::class, 'delete_vendornegotiate'])->name('vendor_negotiate_delete');
 
-        Route::get('/vendor_negotiate_detail/{assessment_id}', [VendorNegotiateDetailController::class, 'show_vendornegotiatedetail'])->name('vendor_negotiate_detail');
+        Route::get('/vendor_negotiate_detail/{assessment_id}', [VendorNegotiateDetailController::class, 'show_vendornegotiatedetail'])->name('vendor_negotiate_detail_show');
         Route::post('/vendor_negotiate_detail/store', [VendorNegotiateDetailController::class, 'store'])
             ->name('vendor_negotiate_detail.store');
     });
