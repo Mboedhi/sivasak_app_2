@@ -66,10 +66,14 @@
                             </td>
                             <td>{{$item_assessment->negotiate ? $item_assessment->negotiate->result : ' -'}}</td>
                             <td>
-                                <a href="{{ url('vendor_negotiate_detail', ['assessment_id' => $item_assessment->assessment_id]) }}"
-                                    style="text-decoration: none;">
-                                    <button class="cek-button">Cek</button>
-                                </a>
+                                @if ($item_assessment->assessment_status === 'accepted')
+                                    <a href="{{ url('vendor_negotiate_detail', ['assessment_id' => $item_assessment->assessment_id]) }}"
+                                        style="text-decoration: none;">
+                                        <button class="cek-button">Cek</button>
+                                    </a>
+                                @else
+                                    <button class="cek-button" onclick="notifyStatus()">Cek</button>
+                                @endif
                                 <button class="delete-button"
                                     onclick="openDeleteModal({{ $item_assessment->assessment_id }})">Hapus</button>
                             </td>
@@ -153,6 +157,9 @@
                 .finally(() => {
                     closeDeleteModal(); // Tutup modal setelah penghapusan selesai
                 });
+        }
+        function notifyStatus() {
+            alert('Tawaran anda belum diterima');
         }
     </script>
 </body>

@@ -67,7 +67,7 @@
                                 <button class="delete-button" onclick="submitRequest('{{ url('/admin_negotiate/tolak', $negotiate->negotiate_id) }}', 'POST')">Tolak</button>
 
                                 <!-- Tombol Hapus -->
-                                <button class="cek-button" onclick="submitRequest('{{ url('/admin_negotiate/hapus', $negotiate->negotiate_id) }}', 'DELETE')">Hapus</button>
+                                <!-- <button class="cek-button" onclick="submitRequest('{{ url('/admin_negotiate/hapus', $negotiate->negotiate_id) }}', 'DELETE')">Hapus</button> -->
                             </td>
                         </tr>
                     @endforeach

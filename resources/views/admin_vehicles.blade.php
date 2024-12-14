@@ -71,8 +71,8 @@
                     <td>{{ $vehicle->year }}</td>
                     <td>{{ $vehicle->vehicle_type }}</td>
                     <td>{{ $vehicle->vehicle_registration }}</td>
-                    <td>{{ $vehicle->vehicle_tax}}</td>
                     <td>{{ $vehicle->registration_expired}}</td>
+                    <td>{{ $vehicle->vehicle_tax}}</td>
                     <td>{{ $vehicle->head_cover_date}}</td>
                     <td>{{ $vehicle->tail_cover_date}}</td>
                     <td>{{ $vehicle->note}}</td>

@@ -71,7 +71,7 @@
                 <tr>
                     <td>{{$item->item_name}}</td>
                     <td>{{$item->item_type}}</td>
-                    <td>{{ (new \NumberFormatter('id_ID', \NumberFormatter::CURRENCY))->formatCurrency($item->item_price, 'IDR') }}</td>
+                    <td>{{ number_format($item->item_price, 0, ',', '.')}}</td>
                     <td>{{$item->item_desc}}</td>
                     <td>{{$item->expired_date}}</td>
                     <td>

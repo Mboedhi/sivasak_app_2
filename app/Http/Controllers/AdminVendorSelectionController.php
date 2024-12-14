@@ -27,6 +27,12 @@ class AdminVendorSelectionController extends Controller
                 $item_assessment->assessment_status = 'accepted';
                 $item_assessment->save();
 
+                $user = $item_assessment->vendor->user;
+                if ($user) {
+                    $user->role = 'tender';
+                    $user->save();
+                }
+
                 return response()->json(['message' => 'Tawaran berhasil diterima.']);
             }
 
