@@ -1,0 +1,1320 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.navbar {
+    background-color: #1565c0;
+    color: black;
+    padding: 10px;
+    text-align: right;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000; /* Nilai z-index lebih rendah dari sidebar */
+    height: 50px;
+}
+
+.akuntender{
+    margin-left: 240px;
+    padding: 40px;
+    margin-top: 60px;
+    position: center;
+}
+
+.sidebar {
+    width: 150px;
+    height: 100vh;
+    background-color: #0A397F;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li img {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+.sidebar ul h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 70px;
+}
+
+.sidebar ul li a:hover {
+    color: cyan;
+    text-decoration: underline;
+}
+
+
+.navbar ul li {
+    display: inline;
+    padding: 10px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar ul li img {
+    width: 23px;
+    height: 23px;
+    margin-right: 10px;
+}
+
+.navbar ul li a:hover {
+    color: white;
+}
+
+/* Main Content */
+.akun {
+    margin-left: 240px;
+    padding: 40px;
+    margin-top: 60px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.button-container-tender {
+    display: flex;
+    justify-content: right;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.button-container-kendaraan {
+    display: flex;
+    justify-content: right;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.button-container-supir {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 20px;
+}
+
+.button-container-tawaran, .search-container-tawaran{
+    display: flex;
+    align-items: right;
+    margin-bottom: 20px;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 10px; /* Mengatur jarak antar elemen */
+    margin-top: 10px;
+}
+
+.tambah-button {
+    background-color: #27ae60;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.tambah-button:hover {
+    background-color: #2ecc71;
+}
+
+/* Table Styles */
+.table-container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+table {
+    width: 900px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.edit-button, .cek-button, .delete-button, .accept-button, .button-isi{
+    background-color: #3498db;
+    color: white;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.edit-button {
+    background-color: #f39c12;
+}
+
+.cek-button {
+    background-color: #3498db;
+}
+
+.delete-button {
+    background-color: #e74c3c;
+}
+
+.accept-button {
+    background-color: #27ae60;
+}
+
+
+
+.edit-button:hover {
+    background-color: #e67e22;
+}
+
+.cek-button:hover {
+    background-color: #2980b9;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+/* Modal Pop-up Styles */
+.modal, .delete-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content, .delete-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+.modal h3 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background-color: #2980b9;
+}
+
+.delete-modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.confirm-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.confirm-button:hover {
+    background-color: #c0392b;
+}
+
+.cancel-button {
+    background-color: #7f8c8d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background-color: #95a5a6;
+}
+
+/* Form Container Styles */
+.form-container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #34495e;
+}
+
+.form-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.form-deskripsi {
+    font-size: 16px;
+    color: black;
+    margin-bottom: 20px;
+    align-content: center;
+}
+
+.content form-title h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.content form-deskripsi p{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container input,
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.form-container select {
+    appearance: none;
+}
+
+tr.danger-row {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+tr.danger-row td {
+    color: white !important;
+}
+
+tr.danger-row td.tax-column {
+    color: #ffc107 !important;
+}
+
+.submit-button {
+    background-color: #27ae60;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #2ecc71;
+}
+/* Form Container Styles */
+.form-container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: black;
+}
+
+.form-container-kuisoner input,
+.form-container-kuisoner select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23777" d="M7 10l5 5 5-5z"/></svg>'); /* Ikon panah ke bawah */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.form-container-kuisoner select {
+    appearance: none;
+}
+
+.form-container-kuisoner label[for]:after {
+    content: ' *'; /* Tanda bintang */
+    color: red; /* Warna bintang merah */
+    font-weight: bold;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submit-button {
+    background-color: #27ae60;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-button:hover {
+    background-color: #2ecc71;
+}
+
+/*
+.cancel-button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cancel-button:hover {
+    background-color: #c0392b;
+} */
+
+.main-content {
+    margin-left: 200px;
+    padding: 40px;
+    margin-top: 30px;
+}
+
+/* Dashboard Cards */
+.dashboard-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: white;
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.text-danger {
+    color: red;
+}
+.fw-bold {
+    font-weight: bold;
+}
+.badge {
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+.bg-danger {
+    background-color: red;
+    color: white;
+}
+.ms-2 {
+    margin-left: 0.5rem;
+}
+
+.card p {
+    font-size: 40px;
+    margin: 10px 0;
+}
+
+.card button {
+    background-color: transparent;
+    border: 1px solid #333;
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Card Colors */
+.card-1 {
+    background-color: #007bff;
+    color: white;
+}
+
+.card-2 {
+    background-color: #dc3545;
+    color: white;
+}
+
+.card-3 {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Traffic Chart */
+.traffic-chart {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.akun h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Buat Tawaran */
+.main-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+/* Buat Tawaran End */
+
+.search-container {
+    margin-bottom: 20px;
+    float: right;
+    border-radius: 5px;
+}
+
+.search-container input {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-container button {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Dashboard Vendor */
+.vendor-info {
+    padding: 20px;
+    align-content: center;
+    margin-right: 140px;
+}
+
+.vendor-info h2 {
+    margin-bottom: 20px;
+    color: #1E3A8A;
+    font-weight: bold;
+}
+
+.info-container {
+    background-color: #F9FAFB;
+    border: 1px solid #D1D5DB;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+.info-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-container table tr {
+    height: 40px;
+}
+
+.info-container table td {
+    font-size: 16px;
+    padding: 5px;
+    color: #374151;
+}
+
+.info-container table td:first-child {
+    font-weight: bold;
+    color: #1E3A8A;
+}
+
+/* Pendaftaran Vendor */
+.offer-list {
+    margin-left: 240px;
+    padding: 20px;
+}
+
+.offer-list h2 {
+    color: #1E3A8A;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.apply-btn {
+    background-color: #10B981;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.apply-btn:hover {
+    background-color: #059669;
+}
+
+.offer-details {
+    margin-left: 240px;
+    padding: 20px;
+}
+
+.offer-details h2 {
+    color: #1E3A8A;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.details-box {
+    background-color: #F9FAFB;
+    border: 1px solid #D1D5DB;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+.details-box table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.details-box table td {
+    padding: 10px;
+    font-size: 14px;
+    color: #374151;
+}
+
+.details-box table td:first-child {
+    font-weight: bold;
+    color: #4B5563;
+    width: 150px;
+}
+
+/* Negoasiasi Vendor */
+.negotiation-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: auto;
+}
+.negotiation-container h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+.negotiation-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+.negotiation-form input, .negotiation-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.negotiation-form textarea {
+    resize: none;
+    height: 100px;
+}
+
+/* Perluasan Layout dan Spacing */
+.main-content, .content, .akun, .akuntender, .vendor-info, .offer-list, .offer-details {
+    width: calc(100% - 300px); /* Memperluas lebar konten dengan jarak tambahan dari sidebar */
+    margin-left: 100px; /* Lebar sidebar yang lebih lebar */
+    padding: 40px 60px;
+    background-color: #f4f4f4;
+    align-content: center;
+}
+
+.sidebar {
+    width: 300px; /* Sidebar yang lebih lebar */
+}
+
+.form-container, .table-container, .info-container, .details-box {
+    max-width: 700px; /* Konten form/table lebih lebar */
+    padding: 30px; /* Padding tambahan */
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Menambah Jarak Antar Elemen pada Form */
+.form-container label, .form-container h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #34495e;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+.form-container input, .form-container select, .form-container textarea {
+    font-size: 16px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.form-container textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.table-container table, .details-box table, .info-container table {
+    margin-top: 20px;
+}
+
+.form-container .submit-button {
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #1565c0;
+    color: white;
+}
+
+.submit-button:hover {
+    background-color: #104a9c;
+}
+
+/* Card Styles dengan Lebar yang Lebih Besar */
+.dashboard-cards .card {
+    width: 30%;
+    padding: 30px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.dashboard-cards .card p {
+    font-size: 36px;
+}
+
+/* Padding & Margin tambahan pada elemen modal */
+.modal-content, .delete-modal-content {
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.modal h3, .delete-modal h3 {
+    font-size: 20px;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+.modal-buttons button, .delete-modal-buttons button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+/* Content Area */
+.content-quisoner {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.content-quisoner h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.quisoner-container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.announcement-container {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.announcement-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.announcement-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.announcement-container table td {
+    padding: 8px 0;
+    vertical-align: top;
+}
+
+.announcement-container table td:first-child {
+    width: 30%;
+    font-weight: bold;
+}
+/* styledash.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background-color: #1a3b72;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding-top: 20px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 15px;
+}
+
+.sidebar li a {
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.sidebar li a:hover {
+    background-color: #254b8b;
+    border-radius: 4px;
+}
+
+/* Header */
+.header {
+    background-color: #e1e6f4;
+    color: #333333;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    width: calc(100% - 220px);
+    position: fixed;
+    top: 0;
+    left: 220px;
+    border-bottom: 1px solid #c1c6d4;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.header-content span {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.header-content img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.logout {
+    color: #333333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Content */
+.content {
+    margin-left: 220px;
+    padding: 80px 20px 20px 20px;
+    width: calc(100% - 220px);
+}
+
+h2 {
+    font-size: 22px;
+    color: #333333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.back-button {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-left: 900px;
+    font-size: 14px;
+    display: block;
+}
+
+/* Table */
+table {
+    width: 100%; /* Make the table occupy full width */
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0; /* Adds spacing around the table */
+    font-size: 12px; /* Smaller font size */
+}
+
+table, th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px 12px; /* Adds more space around text for readability */
+    font-weight: normal; /* Makes text non-bold */
+}
+
+thead th {
+    background-color: #4891F6;
+    color: white;
+    font-weight: bold; /* Non-bold header */
+    font-size: 12px; /* Consistent font size with table content */
+    text-align: center; /* Center align header text */
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+td img {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+/* Optional: Add spacing around the table container */
+.table-container {
+    margin: 0 auto;
+    padding: 0 10px;
+    max-width: 100%;
+}
+
+
+/* Footer */
+.footer {
+    background-color: #f4f4f4;
+    color: #666666;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 220px);
+    left: 220px;
+    border-top: 1px solid #c1c6d4;
+}
+
+.back-tombol {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    font-size: 14px;
+    display: block;
+}
+/* Styling untuk kontainer pertanyaan */
+.question {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* Dropdown style */
+.select-answer {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: #666;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+/* Styling untuk kontainer pertanyaan */
+.question {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Dropdown styling */
+.select-answer {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: #666;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Placeholder untuk kolom penjelasan */
+.explanation-field {
+    display: none; /* Default: hidden */
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.explanation-field textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: none;
+    background-color: #f9f9f9;
+    font-style: italic;
+}
+
+/* Placeholder styling untuk kolom penjelasan */
+.explanation-field textarea::placeholder {
+    color: #bbb;
+}
+
+.modall {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modall-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+}
+
+.modall-content img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.modall-content h2 {
+    font-size: 24px;
+    margin: 0;
+    color: black;
+}
+
+.modall-content p {
+    color: gray;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.modall-content button {
+    background-color: #0000ff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* Negosiasi Vendor Detail */
+.price-display {
+    width: 100%;
+    padding: 11px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #495057;
+}
+/* Kelas khusus untuk halaman Daftar Questioner */
+.halaman-questioner {
+    padding: 20px;
+}
+
+.halaman-questioner h2 {
+    text-align: center; /* Judul rata tengah */
+    color: #000000; /* Warna biru */
+    margin-bottom: 20px; /* Jarak ke tabel */
+}
+
+/* Styling untuk Header */
+.header-questioner {
+    background-color: #1064E0; /* Warna biru */
+    color: rgb(11, 0, 0); /* Warna teks putih */
+    padding: 10px 20px; /* Spasi di dalam kotak */
+    display: flex; /* Gunakan flexbox */
+    justify-content: space-between; /* Elemen di kiri dan kanan */
+    align-items: center; /* Rata tengah secara vertikal */
+}
+
+.header-questioner img {
+    height: 30px; /* Ukuran ikon kecil */
+    margin-right: 50px; /* Jarak dengan teks */
+}
+
+.header-questioner span {
+    font-size: 15px; /* Ukuran teks */
+    margin-left: 1300px;
+    color: #020202;
+    font-weight: lighter;
+}
+
+.header-questioner .logout {
+    font-size: 15px;
+    text-decoration: none; /* Hilangkan garis bawah */
+    color: rgb(0, 0, 0); /* Teks putih */
+    font-weight: lighter; /* Teks tebal */
+}
+
+/* Tabel */
+.halaman-questioner .table-container {
+    overflow-x: auto; /* Tabel tidak meluap layar */
+}
+
+.halaman-questioner table {
+    width: 100%; /* Lebar penuh */
+    border-collapse: collapse; /* Hilangkan garis ganda */
+    margin: 20px auto; /* Rata tengah */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+    font-size: 14px; /* Ukuran font lebih kecil */
+}
+
+.halaman-questioner thead th {
+    background-color: #4891F6; /* Warna biru */
+    color: white; /* Teks putih */
+    padding: 8px; /* Spasi */
+    text-align: left; /* Rata tengah */
+}
+
+.halaman-questioner tbody tr:nth-child(even) {
+    background-color: #ffffff; /* Baris genap abu-abu muda */
+}
+
+.halaman-questioner tbody tr:nth-child(odd) {
+    background-color: #DEE2E6; /* Baris ganjil putih */
+}
+
+.halaman-questioner tbody tr td {
+    padding: 6px; /* Spasi lebih kecil */
+    text-align: left; /* Teks rata tengah */
+}
+
+/* Kolom nomor lebih kecil */
+.halaman-questioner table td:first-child,
+.halaman-questioner table th:first-child {
+    width: 5%; /* Lebar kolom nomor */
+    text-align: center; /* Rata tengah */
+}
+
+/* Tombol kembali */
+.halaman-questioner .back-button {
+    margin-top: 20px; /* Jarak atas */
+    margin-left: 1200px;
+    padding: 8px 16px; /* Ukuran tombol lebih kecil */
+    background-color: #007bff; /* Tombol biru */
+    color: white; /* Teks putih */
+    border: none; /* Hilangkan border */
+    border-radius: 5px; /* Sudut membulat */
+    cursor: pointer; /* Kursor tangan */
+}
+
+.halaman-questioner .back-button:hover {
+    background-color: #0056b3; /* Biru lebih gelap saat hover */
+}
+
+/* Footer */
+.footer-questioner {
+    text-align: left; /* Teks rata tengah */
+    margin-top: 20px; /* Jarak atas */
+    padding: 10px 0; /* Spasi vertikal */
+    background-color: #0056b3; /* Warna abu-abu muda */
+    color: #333; /* Teks abu-abu gelap */
+    font-size: 12px; /* Ukuran font kecil */
+}
